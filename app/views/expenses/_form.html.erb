@@ -8,6 +8,6 @@
   <%= f.select('category', Expense::CATEGORIES.collect {|k, v| [v, k]}, {include_blank: true, label: t('expense.category')}, wrapper: { class: 'category_select'}) %>
   <%= f.submit t('expense.create'), class: 'btn btn-primary' %>
   <% if controller_name.eql?('expenses') && action_name.eql?('edit')  %>
-    <%= link_to t('expense.delete_expense'), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger hidden-sm-down'%>
+    <%= link_to t('expense.delete_expense'), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger'%>
   <% end %>
 <% end %>
