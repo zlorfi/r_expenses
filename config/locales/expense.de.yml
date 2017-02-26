@@ -1,0 +1,22 @@
+de:
+  expense:
+    new_expense: Neuen Eintrag vornehmen
+    title: Bezeichnung
+    amount: Ausgabe
+    intake: Einnahmen
+    intake_checkbox: Dies ist eine Einnahme
+    purchesed_on: Datum
+    category: Kategorie
+    create: Eintrag erstellen
+    index: Einträge
+    overview: Auswertung
+    sign_out: Ausloggen
+    successfully_created: 'Eintrag erfolgreich verbucht'
+    successfully_updated: 'Eintrag erfolgreich editiert'
+    successfully_deleted: 'Eintrag erfolgreich gelöscht.'
+    current_month: Aktueller Monat
+    current_year: Aktuelles Jahr
+    edit_expense: Eintrag bearbeiten
+    delete_expense: Eintrag löschen
+    back: Zurück
+    confirm_delete: Sind Sie sicher?

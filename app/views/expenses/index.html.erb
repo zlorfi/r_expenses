@@ -1,0 +1,29 @@
+<table class="table">
+  <thead class="thead-default">
+    <tr>
+      <th><%= t('expense.purchesed_on') %></th>
+      <th><%= t('expense.title') %></th>
+      <th><%= t('expense.amount') %></th>
+      <th class="hidden-sm-down"><%= t('expense.category') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Expense.order(id: :desc).each do |expense| %>
+    <tr>
+      <th scope="row"><%= l expense.purchesed_on %></th>
+      <td><%= expense.title %></td>
+      <td class="text-right">
+        <%= mark_amount(expense) %>
+      </td>
+      <td class="hidden-sm-down">
+        <%= Expense::CATEGORIES.fetch(expense.category.to_sym, '') %>
+      </td>
+      <td>
+        <%= link_to (fa_icon "pencil"), edit_expense_path(expense), class: 'btn btn-primary btn-sm'%>
+        <%= link_to (fa_icon "trash-o"), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger btn-sm hidden-sm-down'%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,8 @@
+<h1 class="hidden-sm-down"><%= t 'expense.new_expense' %></h1>
+<h3 class="hidden-md-up"><%= t 'expense.new_expense' %></h1>
+
+<%= render 'form', expense: @expense %>
+
+<hr>
+
+<%= render 'last_5', expenses: Expense.order(id: :asc).reverse_order.limit(5) %>

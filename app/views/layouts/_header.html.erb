@@ -1,0 +1,21 @@
+<div class="header clearfix">
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <% if user_signed_in? %>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% end %>
+    <%= link_to controller.controller_name, root_path, class: 'navbar-brand'%>
+    <% if user_signed_in? %>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <%= nav_bar do %>
+          <%= nav_link t('expense.index'), expenses_path %>
+          <%= nav_link t('expense.overview'), overview_expenses_path %>
+          <%= nav_link t('expense.sign_out'), logout_path %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </nav>
+</div>

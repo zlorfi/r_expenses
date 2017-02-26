@@ -1,0 +1,53 @@
+<script>
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var expense_data = google.visualization.arrayToDataTable([
+      ['Category', 'Expenses'],
+      <% Expense::CATEGORIES.each do |category_key, category_value| %>
+        ['<%= category_value %>', <%= Expense.current_month_sum_for_category(category_key) %>],
+      <% end %>
+    ]);
+
+    var intake_data = google.visualization.arrayToDataTable([
+      ['Nature_of_transfer', 'Summe', { role: 'style' }],
+      ['<%= I18n.t('expense.intake') %>', <%= Expense.current_month_sum_with_intake(true) %>, '#5cb85c'],
+      ['<%= I18n.t('expense.amount') %>', <%= Expense.current_month_sum_with_intake(false) %>, '#d9534f']
+    ]);
+
+    var formatter = new google.visualization.NumberFormat({suffix: '€', decimalSymbol: ',', groupingSymbol: '.'});
+    formatter.format(expense_data, 1); // Apply formatter to second column
+    formatter.format(intake_data, 1); // Apply formatter to second column
+
+
+    var expense_options = {
+      pieHole: 0.4,
+      pieSliceText: 'percentage',
+      height: 400,
+      sliceVisibilityThreshold: .1,
+    };
+
+    var intake_options = {
+      bars: 'horizontal',
+      legend: { position: "none" },
+      height: 240,
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('expense_current_month'));
+    chart.draw(expense_data, expense_options);
+
+    var chart_2 = new google.visualization.BarChart(document.getElementById('intake_current_month'));
+    chart_2.draw(intake_data, intake_options);
+  }
+
+  $(window).resize(function(){
+    drawChart();
+  });
+</script>
+
+<h1>
+  <%= t('expense.overview') %>
+  <small class="text-muted"><%= l(Date.today, format: '%B') %> <%= Date.today.year %></small>
+</h1>
+<div id='expense_current_month' class='chart'></div>
+<div id='intake_current_month' class='chart'></div>

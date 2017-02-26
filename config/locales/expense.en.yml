@@ -1,0 +1,22 @@
+en:
+  expense:
+    new_expense: New expense
+    title: Title
+    amount: Amount
+    intake: Intake
+    intake_checkbox: This is an intake
+    purchesed_on: Purchesed on
+    category: Category
+    create: Create entry
+    index: Entries
+    overview: Overview
+    sign_out: Sign out
+    successfully_created: 'Expense was successfully created.'
+    successfully_updated: 'Expense was successfully updated.'
+    successfully_deleted: 'Expense was successfully destroyed.'
+    current_month: Current month
+    current_year: Current year
+    edit_expense: Edit expense
+    delete_expense: Delete expense
+    back: Back
+    confirm_delete: Are you sure?
