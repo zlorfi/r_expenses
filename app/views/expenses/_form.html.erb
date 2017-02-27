@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(expense) do |f| %>
+<%= bootstrap_form_for(expense, label_errors: true) do |f| %>
   <%= f.text_field :title, label: t('expense.title'), autofocus: true %>
   <%= f.number_field :amount, label: t('expense.amount'), step: 0.01, placeholder: '0,00', append: "€" %>
   <%= f.form_group :intake do %>
