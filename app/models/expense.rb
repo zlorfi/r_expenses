@@ -1,4 +1,6 @@
 class Expense < ApplicationRecord
+  include Filterable
+
   CATEGORIES = { living: 'Wohnen',
                  foods: 'Lebensmittel',
                  supplements: 'Genußmittel',
@@ -20,6 +22,8 @@ class Expense < ApplicationRecord
 
   scope :given_month, ->(month, year) { where("MONTH(purchesed_on) = ? AND YEAR(purchesed_on) = ?", month, year) }
   scope :given_year, ->(year) { where("YEAR(purchesed_on) = ?", year) }
+
+  scope :category, ->(category) { where(category: category, intake: false) }
 
   def self.current_month_sum_with_intake(include_intake=false)
     current_month.where(intake: include_intake).sum(:amount)

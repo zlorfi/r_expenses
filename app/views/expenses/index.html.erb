@@ -1,3 +1,12 @@
+<%= filter_nav_bar do %>
+  <%= filter_links t('expense.short_form.all'), expenses_path(show: 'all') %>
+  <% Expense::CATEGORIES.each do |key, value| %>
+    <%= filter_links t("expense.short_form.#{key}"), expenses_path(category: key) %>
+  <% end %>
+<% end %>
+
+<hr>
+
 <table class="table">
   <thead class="thead-default">
     <tr>
@@ -9,9 +18,16 @@
     </tr>
   </thead>
   <tbody>
-    <% Expense.order(id: :desc).each do |expense| %>
+    <% @expenses.order(purchesed_on: :desc).each do |expense| %>
     <tr>
-      <th scope="row"><%= l expense.purchesed_on %></th>
+      <th scope="row">
+        <div class="hidden-xs-down">
+          <%= l(expense.purchesed_on) %>
+        </div>
+        <div class="hidden-sm-up">
+          <%= l(expense.purchesed_on, format: :short) %>
+        </div>
+      </th>
       <td><%= expense.title %></td>
       <td class="text-right">
         <%= mark_amount(expense) %>

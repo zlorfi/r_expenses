@@ -20,3 +20,13 @@ en:
     delete_expense: Delete expense
     back: Back
     confirm_delete: Are you sure?
+    short_form:
+      all: All
+      living: 'Living'
+      foods: 'Foods'
+      supplements: 'Supplements'
+      hygiene: 'Hygiene'
+      entertainment: 'Entertainment'
+      ride_costs: 'Ride costs'
+      maintenance: 'Maintenance'
+      various: 'Various'
