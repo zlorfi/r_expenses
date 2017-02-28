@@ -64,7 +64,7 @@
 
 <h1>
   <%= t('expense.overview') %>
-  <small class="text-muted"><%= Date::MONTHNAMES[given_month.to_i] %> <%= given_year %></small>
+  <small class="text-muted"><%= l(DateTime.parse(Date::MONTHNAMES[given_month.to_i]), format: "%B") %> <%= given_year %></small>
 </h1>
 <div id='expense_current_month' class='chart'></div>
 <div id='intake_current_month' class='chart'></div>
