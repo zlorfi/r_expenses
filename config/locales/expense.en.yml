@@ -1,4 +1,11 @@
 en:
+  helpers:
+    placeholder:
+      user:
+        email: Login
+        password: Password
+      expense:
+        title: Title
   expense:
     new_expense: New expense
     title: Title
@@ -8,6 +15,7 @@ en:
     purchesed_on: Purchesed on
     category: Category
     create: Create entry
+    update: Update entry
     index: Entries
     overview: Overview
     sign_out: Sign out
@@ -19,6 +27,9 @@ en:
     edit_expense: Edit expense
     delete_expense: Delete expense
     back: Back
+    close: Close
+    login: Login
+    password: Password
     confirm_delete: Are you sure?
     short_form:
       all: All
