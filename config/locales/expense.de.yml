@@ -23,6 +23,7 @@ de:
     successfully_updated: 'Eintrag erfolgreich editiert'
     successfully_deleted: 'Eintrag erfolgreich gelöscht.'
     current_month: Aktueller Monat
+    previous_month: Letzter Monat
     current_year: Aktuelles Jahr
     edit_expense: Eintrag bearbeiten
     delete_expense: Eintrag löschen

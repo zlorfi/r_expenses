@@ -62,7 +62,7 @@ class ExpensesController < ApplicationController
   end
 
   def overview
-    @expenses = Expense.all
+    @expenses = Expense.given_month_with_intake(params[:month], params[:year])
   end
 
   private

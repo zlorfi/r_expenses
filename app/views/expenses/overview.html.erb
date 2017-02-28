@@ -1,3 +1,6 @@
+<% given_month = params[:month] || Date.today.month %>
+<% given_year = params[:year] || Date.today.year %>
+
 <script>
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
@@ -5,17 +8,17 @@
     var expense_data = google.visualization.arrayToDataTable([
       ['Category', 'Expenses'],
       <% Expense::CATEGORIES.each do |category_key, category_value| %>
-        ['<%= category_value %>', <%= Expense.given_month_sum_for_category_with_intake(Date.today.month, Date.today.year, category_key) %>],
+        ['<%= category_value %>', <%= Expense.given_month_sum_for_category_with_intake(given_month, given_year, category_key) %>],
       <% end %>
     ]);
 
     var intake_data = google.visualization.arrayToDataTable([
       ['Nature_of_transfer', 'Summe', { role: 'style' }],
       ['<%= I18n.t('expense.intake') %>',
-        <%= Expense.given_month_sum_with_intake(Date.today.month, Date.today.year, true) %>,
+        <%= Expense.given_month_sum_with_intake(given_month, given_year, true) %>,
         '#5cb85c'],
       ['<%= I18n.t('expense.amount') %>',
-        <%= Expense.given_month_sum_with_intake(Date.today.month, Date.today.year, false) %>,
+        <%= Expense.given_month_sum_with_intake(given_month, given_year, false) %>,
         '#d9534f']
     ]);
 
@@ -52,9 +55,16 @@
   });
 </script>
 
+<%= filter_nav_bar do %>
+  <%= filter_links t("expense.previous_month"), overview_expenses_path(month: 1.month.ago.month, year: 1.month.ago.year) %>
+  <%= filter_links t("expense.current_month"), overview_expenses_path(month: Date.today.month, year: Date.today.year) %>
+<% end %>
+
+<hr>
+
 <h1>
   <%= t('expense.overview') %>
-  <small class="text-muted"><%= l(Date.today, format: '%B') %> <%= Date.today.year %></small>
+  <small class="text-muted"><%= Date::MONTHNAMES[given_month.to_i] %> <%= given_year %></small>
 </h1>
 <div id='expense_current_month' class='chart'></div>
 <div id='intake_current_month' class='chart'></div>

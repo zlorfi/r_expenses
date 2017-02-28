@@ -22,8 +22,12 @@ class Expense < ApplicationRecord
 
   scope :category, ->(category) { where(category: category, intake: false) }
 
+  def self.given_month_with_intake(month=Date.today.month, year=Date.today.year, include_intake=false)
+    given_month(month, year).where(intake: include_intake)
+  end
+
   def self.given_month_sum_with_intake(month, year, include_intake=false)
-    given_month(month, year).where(intake: include_intake).sum(:amount)
+    given_month_with_intake(month, year, include_intake).sum(:amount)
   end
 
   def self.given_month_sum_for_category_with_intake(month, year, category, include_intake=false)

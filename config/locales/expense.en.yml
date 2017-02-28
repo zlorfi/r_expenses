@@ -23,6 +23,7 @@ en:
     successfully_updated: 'Expense was successfully updated.'
     successfully_deleted: 'Expense was successfully destroyed.'
     current_month: Current month
+    previous_month: Previous month
     current_year: Current year
     edit_expense: Edit expense
     delete_expense: Delete expense
