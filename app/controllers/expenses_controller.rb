@@ -42,7 +42,7 @@ class ExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @expense.update(expense_params)
-        format.html { redirect_to expenses_path, notice: I18n.t('expense.successfully_updated') }
+        format.html { redirect_to root_path, notice: I18n.t('expense.successfully_updated') }
         format.json { render :show, status: :ok, location: @expense }
       else
         format.html { render :edit }

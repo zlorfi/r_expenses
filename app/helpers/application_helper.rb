@@ -22,3 +22,11 @@ module ApplicationHelper
     link_to text, path, class: [standard, active, additional_classes].join(' ')
   end
 end
+
+  def set_value(object)
+    if object.new_record?
+      Date.today
+    else
+      object.purchesed_on
+    end
+  end

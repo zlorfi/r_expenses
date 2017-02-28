@@ -5,14 +5,18 @@
     var expense_data = google.visualization.arrayToDataTable([
       ['Category', 'Expenses'],
       <% Expense::CATEGORIES.each do |category_key, category_value| %>
-        ['<%= category_value %>', <%= Expense.current_month_sum_for_category(category_key) %>],
+        ['<%= category_value %>', <%= Expense.given_month_sum_for_category_with_intake(Date.today.month, Date.today.year, category_key) %>],
       <% end %>
     ]);
 
     var intake_data = google.visualization.arrayToDataTable([
       ['Nature_of_transfer', 'Summe', { role: 'style' }],
-      ['<%= I18n.t('expense.intake') %>', <%= Expense.current_month_sum_with_intake(true) %>, '#5cb85c'],
-      ['<%= I18n.t('expense.amount') %>', <%= Expense.current_month_sum_with_intake(false) %>, '#d9534f']
+      ['<%= I18n.t('expense.intake') %>',
+        <%= Expense.given_month_sum_with_intake(Date.today.month, Date.today.year, true) %>,
+        '#5cb85c'],
+      ['<%= I18n.t('expense.amount') %>',
+        <%= Expense.given_month_sum_with_intake(Date.today.month, Date.today.year, false) %>,
+        '#d9534f']
     ]);
 
     var formatter = new google.visualization.NumberFormat({suffix: '€', decimalSymbol: ',', groupingSymbol: '.'});

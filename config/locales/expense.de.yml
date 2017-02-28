@@ -1,4 +1,11 @@
 de:
+  helpers:
+    placeholder:
+      user:
+        email: Login
+        password: Passwort
+      expense:
+        title: Bezeichnung
   expense:
     new_expense: Neuen Eintrag vornehmen
     title: Bezeichnung
@@ -8,6 +15,7 @@ de:
     purchesed_on: Datum
     category: Kategorie
     create: Eintrag erstellen
+    update: Eintrag anpassen
     index: Einträge
     overview: Auswertung
     sign_out: Ausloggen
@@ -19,6 +27,7 @@ de:
     edit_expense: Eintrag bearbeiten
     delete_expense: Eintrag löschen
     back: Zurück
+    close: Schließen
     confirm_delete: Sind Sie sicher?
     short_form:
       all: Alle
