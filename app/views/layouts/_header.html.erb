@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <%= nav_bar do %>
-          <%= nav_link t('expense.index'), expenses_path %>
+          <%= nav_link t('expense.index'), expenses_path(show: 'all') %>
           <%= nav_link t('expense.overview'), overview_expenses_path %>
           <%= nav_link t('expense.sign_out'), logout_path %>
         <% end %>

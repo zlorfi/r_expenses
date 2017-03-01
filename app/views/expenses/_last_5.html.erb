@@ -24,7 +24,7 @@
         <%= mark_amount(expense) %>
       </td>
       <td class="hidden-sm-down">
-        <%= Expense::CATEGORIES.fetch(expense.category.to_sym, '') %>
+        <%= category_name(expense.category) %>
       </td>
       <td>
         <%= link_to fa_icon("pencil"), edit_expense_path(expense), class: 'btn btn-primary btn-sm'%>

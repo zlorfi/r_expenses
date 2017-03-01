@@ -13,4 +13,8 @@ module ExpensesHelper
       t('expense.create')
     end
   end
+
+  def category_name(category)
+    Expense::CATEGORIES.fetch(category.to_sym, '')
+  end
 end
