@@ -4,7 +4,11 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.paginate(page: params[:page], per_page: (params[:per_page] || 15)).filter(params.slice(:category))
+    @expenses = Expense.paginate(page: params[:page],
+                                 per_page: (params[:per_page] || 15))
+                                 .filter(params.slice(:category))
+                                 .order(id: :asc)
+                                 .reverse_order
   end
 
   # GET /expenses/1
@@ -62,7 +66,6 @@ class ExpensesController < ApplicationController
   end
 
   def overview
-    @expenses = Expense.given_month_with_intake(params[:month], params[:year])
   end
 
   private

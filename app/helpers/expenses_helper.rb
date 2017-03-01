@@ -17,4 +17,12 @@ module ExpensesHelper
   def category_name(category)
     Expense::CATEGORIES.fetch(category.to_sym, '')
   end
+
+  def given_month
+    params[:month] || Date.today.month
+  end
+
+  def given_year
+    params[:year] || Date.today.year
+  end
 end
