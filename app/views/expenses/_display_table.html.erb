@@ -5,30 +5,37 @@
       <th><%= t('expense.title') %></th>
       <th><%= t('expense.amount') %></th>
       <th class="hidden-sm-down"><%= t('expense.category') %></th>
-      <th></th>
+      <th class="hidden-sm-down"></th>
     </tr>
   </thead>
   <tbody>
     <% expenses.each do |expense| %>
     <tr>
       <th scope="row">
-        <div class="hidden-xs-down">
-          <%= l(expense.purchesed_on) %>
-        </div>
-        <div class="hidden-sm-up">
+        <div class="hidden-md-up">
           <%= l(expense.purchesed_on, format: :short) %>
         </div>
+        <div class="hidden-sm-down">
+          <%= l(expense.purchesed_on) %>
+        </div>
       </th>
-      <td><%= expense.title %></td>
+      <td>
+        <div class="hidden-md-up">
+          <%= link_to expense.title, edit_expense_path(expense) %>
+        </div>
+        <div class="hidden-sm-down">
+          <%= expense.title %>
+        </div>
+      </td>
       <td class="text-right">
         <%= mark_amount(expense) %>
       </td>
       <td class="hidden-sm-down">
         <%= category_name(expense.category) %>
       </td>
-      <td>
+      <td class="hidden-sm-down">
         <%= link_to fa_icon("pencil"), edit_expense_path(expense), class: 'btn btn-primary btn-sm'%>
-        <%= link_to (fa_icon "trash-o"), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger btn-sm hidden-sm-down'%>
+        <%= link_to (fa_icon "trash-o"), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger btn-sm'%>
       </td>
     </tr>
     <% end %>

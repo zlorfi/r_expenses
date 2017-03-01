@@ -7,41 +7,6 @@
 
 <hr>
 
-<table class="table">
-  <thead class="thead-default">
-    <tr>
-      <th><%= t('expense.purchesed_on') %></th>
-      <th><%= t('expense.title') %></th>
-      <th><%= t('expense.amount') %></th>
-      <th class="hidden-sm-down"><%= t('expense.category') %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @expenses.order(purchesed_on: :desc).each do |expense| %>
-    <tr>
-      <th scope="row">
-        <div class="hidden-xs-down">
-          <%= l(expense.purchesed_on) %>
-        </div>
-        <div class="hidden-sm-up">
-          <%= l(expense.purchesed_on, format: :short) %>
-        </div>
-      </th>
-      <td><%= expense.title %></td>
-      <td class="text-right">
-        <%= mark_amount(expense) %>
-      </td>
-      <td class="hidden-sm-down">
-        <%= category_name(expense.category) %>
-      </td>
-      <td>
-        <%= link_to fa_icon("pencil"), edit_expense_path(expense), class: 'btn btn-primary btn-sm'%>
-        <%= link_to (fa_icon "trash-o"), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger btn-sm hidden-sm-down'%>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'display_table', expenses: @expenses %>
 
 <%= will_paginate @expenses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
