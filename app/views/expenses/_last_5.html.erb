@@ -11,7 +11,14 @@
   <tbody>
     <% expenses.each do |expense| %>
     <tr>
-      <th scope="row"><%= l expense.purchesed_on %></th>
+      <th scope="row">
+        <div class="hidden-xs-down">
+          <%= l(expense.purchesed_on) %>
+        </div>
+        <div class="hidden-sm-up">
+          <%= l(expense.purchesed_on, format: :short) %>
+        </div>
+      </th>
       <td><%= expense.title %></td>
       <td class="text-right">
         <%= mark_amount(expense) %>
