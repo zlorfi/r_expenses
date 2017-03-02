@@ -65,6 +65,7 @@ class ExpensesController < ApplicationController
     end
   end
 
+  # GET /expenses/overview
   def overview
   end
 

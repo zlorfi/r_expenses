@@ -24,20 +24,4 @@ class Expense < ApplicationRecord
   def self.given_month_with_intake(month=Date.today.month, year=Date.today.year, include_intake=false)
     given_month(month, year).where(intake: include_intake)
   end
-
-  def self.given_month_sum_with_intake(month, year, include_intake=false)
-    given_month_with_intake(month, year, include_intake).sum(:amount)
-  end
-
-  def self.given_month_sum_for_category_with_intake(month, year, category, include_intake=false)
-    given_month(month, year).where(category: category, intake: include_intake).sum(:amount)
-  end
-
-  def self.given_year_sum_with_intake(year, include_intake=false)
-    given_year(year).where(intake: include_intake).sum(:amount)
-  end
-
-  def self.given_year_sum_for_category_with_intake(year, category, include_intake=false)
-    given_year(year).where(category: category, intake: include_intake).sum(:amount)
-  end
 end

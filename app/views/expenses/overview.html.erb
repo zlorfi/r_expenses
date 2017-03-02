@@ -4,25 +4,24 @@
   function drawChart() {
     var expense_data = google.visualization.arrayToDataTable([
       ['Category', 'Expenses'],
-      <% Expense::CATEGORIES.each do |category_key, category_value| %>
-        ['<%= category_value %>', <%= Expense.given_month_sum_for_category_with_intake(given_month, given_year, category_key) %>],
+      <% Expense.given_month_with_intake(given_month, given_year).group(:category).sum(:amount).each do |category, amount| %>
+        ['<%= category_name(category) %>', <%= amount %>],
       <% end %>
     ]);
 
     var intake_data = google.visualization.arrayToDataTable([
       ['Nature_of_transfer', 'Summe', { role: 'style' }],
       ['<%= I18n.t('expense.intake') %>',
-        <%= Expense.given_month_sum_with_intake(given_month, given_year, true) %>,
+        <%= Expense.given_month_with_intake(given_month, given_year, true).sum(:amount) %>,
         '#5cb85c'],
       ['<%= I18n.t('expense.amount') %>',
-        <%= Expense.given_month_sum_with_intake(given_month, given_year, false) %>,
+        <%= Expense.given_month_with_intake(given_month, given_year, false).sum(:amount) %>,
         '#d9534f']
     ]);
 
     var formatter = new google.visualization.NumberFormat({suffix: '€', decimalSymbol: ',', groupingSymbol: '.'});
     formatter.format(expense_data, 1); // Apply formatter to second column
     formatter.format(intake_data, 1); // Apply formatter to second column
-
 
     var expense_options = {
       pieHole: 0.4,

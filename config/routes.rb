@@ -8,10 +8,9 @@ Rails.application.routes.draw do
 
   resources :expenses do
     collection do
-      get 'overview'
+      get 'overview'#, constraints: lambda { |req| req.format == :html }
     end
   end
 
   root 'expenses#new'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
