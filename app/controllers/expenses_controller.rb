@@ -7,7 +7,7 @@ class ExpensesController < ApplicationController
     @expenses = Expense.paginate(page: params[:page],
                                  per_page: (params[:per_page] || 15))
                                  .filter(params.slice(:category))
-                                 .order(id: :asc)
+                                 .order(purchesed_on: :asc)
                                  .reverse_order
   end
 
