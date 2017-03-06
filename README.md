@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Personal household book for keeping track of curent expenses.
 
-Things you may want to cover:
+## Ruby version
+`2.3.3`
 
-* Ruby version
+## Configuration
+* set an initial user via `rake db:seed`
+* use the rails console to edit and add new user `bundle exec rails c`
 
-* System dependencies
+## Deployment instructions
+ `PRODUCTION_SERVER=$YOUR_SERVER bundle exec cap production deploy`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## TODO:
+* add user management
+* move from [Google Charts](https://developers.google.com/chart/) to another framework
