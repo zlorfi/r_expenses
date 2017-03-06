@@ -16,9 +16,10 @@
 
   <body>
     <div class="container">
+      <%= render 'layouts/env' unless Rails.env.production? %>
       <%= render 'layouts/header' %>
-      <% flash.each do |name, msg| %>
-         <%= content_tag(:div, msg, class: "alert alert-info") %>
+      <% flash.each do |type, msg| %>
+        <%= set_alert_massage(type, msg) %>
       <% end %>
 
       <%= yield %>

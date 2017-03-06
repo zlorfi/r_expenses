@@ -21,7 +21,6 @@ module ApplicationHelper
     active = current_page?(path) ? 'active' : ''
     link_to text, path, class: [standard, active, additional_classes].join(' ')
   end
-end
 
   def set_value(object)
     if object.new_record?
@@ -30,3 +29,22 @@ end
       object.purchesed_on
     end
   end
+
+  def set_alert_type(type)
+    case type
+    when 'notice'
+      'info'
+    when 'alert'
+      'danger'
+    else
+      'warning'
+    end
+  end
+
+  def set_alert_massage(type, msg)
+    content_tag(:div, class: "alert alert-#{set_alert_type(type)} alert-dismissible fade show", role: 'alert') do
+      concat content_tag(:button, content_tag(:span, '&times;'.html_safe, 'aria-hidden' => 'true'), class: 'close', type: 'button', data: {dismiss: 'alert'}, 'aria-label' => 'Close')
+      concat msg
+    end
+  end
+end
