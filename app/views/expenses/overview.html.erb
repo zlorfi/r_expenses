@@ -10,7 +10,7 @@
     ]);
 
     var intake_data = google.visualization.arrayToDataTable([
-      ['Nature_of_transfer', 'Summe', { role: 'style' }],
+      ['Nature_of_transfer', 'Amount', { role: 'style' }],
       ['<%= I18n.t('expense.intake') %>',
         <%= Expense.given_month_with_intake(given_month, given_year, true).sum(:amount) %>,
         '#5cb85c'],
@@ -19,7 +19,9 @@
         '#d9534f']
     ]);
 
-    var formatter = new google.visualization.NumberFormat({suffix: '€', decimalSymbol: ',', groupingSymbol: '.'});
+    var formatter = new google.visualization.NumberFormat({suffix: '€',
+                                                           decimalSymbol: ',',
+                                                           groupingSymbol: '.'});
     formatter.format(expense_data, 1); // Apply formatter to second column
     formatter.format(intake_data, 1); // Apply formatter to second column
 
@@ -39,10 +41,10 @@
       height: 240,
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('expense_current_month'));
+    var chart = new google.visualization.PieChart(document.getElementById('expense_given_month'));
     chart.draw(expense_data, expense_options);
 
-    var chart_2 = new google.visualization.BarChart(document.getElementById('intake_current_month'));
+    var chart_2 = new google.visualization.BarChart(document.getElementById('intake_given_month'));
     chart_2.draw(intake_data, intake_options);
   }
 
@@ -52,7 +54,8 @@
 </script>
 
 <%= filter_nav_bar do %>
-  <%= filter_links t("expense.previous_month"), overview_expenses_path(month: 1.month.ago.month, year: 1.month.ago.year) %>
+  <%= filter_links "#{l(DateTime.parse(Date::MONTHNAMES[2.month.ago.month]), format: "%B")} #{2.month.ago.year}", overview_expenses_path(month: 2.month.ago.month, year: 2.month.ago.year) if Expense.given_month(2.month.ago.month, 2.month.ago.year).any? %>
+  <%= filter_links t("expense.previous_month"), overview_expenses_path(month: 1.month.ago.month, year: 1.month.ago.year) if Expense.given_month(1.month.ago.month, 1.month.ago.year).any? %>
   <%= filter_links t("expense.current_month"), overview_expenses_path(month: Date.today.month, year: Date.today.year) %>
 <% end %>
 
@@ -60,7 +63,9 @@
 
 <h1>
   <%= t('expense.overview') %>
-  <small class="text-muted"><%= l(DateTime.parse(Date::MONTHNAMES[given_month.to_i]), format: "%B") %> <%= given_year %></small>
+  <small class="text-muted">
+    <%= l(DateTime.parse(Date::MONTHNAMES[given_month.to_i]), format: "%B") %> <%= given_year %>
+  </small>
 </h1>
-<div id='expense_current_month' class='chart'></div>
-<div id='intake_current_month' class='chart'></div>
+<div id='expense_given_month' class='chart'></div>
+<div id='intake_given_month' class='chart'></div>
