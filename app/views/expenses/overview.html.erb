@@ -4,7 +4,7 @@
   function drawChart() {
     var expense_data = google.visualization.arrayToDataTable([
       ['Category', 'Expenses'],
-      <% Expense.given_month_with_intake(given_month, given_year).group(:category).sum(:amount).each do |category, amount| %>
+      <% Expense.given_month_for_group_with_intake(current_group, given_month, given_year).group(:category).sum(:amount).each do |category, amount| %>
         ['<%= category_name(category) %>', <%= amount %>],
       <% end %>
     ]);
@@ -12,10 +12,10 @@
     var intake_data = google.visualization.arrayToDataTable([
       ['Nature_of_transfer', 'Amount', { role: 'style' }],
       ['<%= I18n.t('expense.intake') %>',
-        <%= Expense.given_month_with_intake(given_month, given_year, true).sum(:amount) %>,
+        <%= Expense.given_month_for_group_with_intake(current_group, given_month, given_year, true).sum(:amount) %>,
         '#5cb85c'],
       ['<%= I18n.t('expense.amount') %>',
-        <%= Expense.given_month_with_intake(given_month, given_year, false).sum(:amount) %>,
+        <%= Expense.given_month_for_group_with_intake(current_group, given_month, given_year, false).sum(:amount) %>,
         '#d9534f']
     ]);
 
@@ -54,8 +54,8 @@
 </script>
 
 <%= filter_nav_bar do %>
-  <%= filter_links "#{l(DateTime.parse(Date::MONTHNAMES[2.month.ago.month]), format: "%B")} #{2.month.ago.year}", overview_expenses_path(month: 2.month.ago.month, year: 2.month.ago.year) if Expense.given_month(2.month.ago.month, 2.month.ago.year).any? %>
-  <%= filter_links t("expense.previous_month"), overview_expenses_path(month: 1.month.ago.month, year: 1.month.ago.year) if Expense.given_month(1.month.ago.month, 1.month.ago.year).any? %>
+  <%= filter_links "#{l(DateTime.parse(Date::MONTHNAMES[2.month.ago.month]), format: "%B")} #{2.month.ago.year}", overview_expenses_path(month: 2.month.ago.month, year: 2.month.ago.year) if Expense.given_month(2.month.ago.month, 2.month.ago.year, current_group).any? %>
+  <%= filter_links t("expense.previous_month"), overview_expenses_path(month: 1.month.ago.month, year: 1.month.ago.year) if Expense.given_month(1.month.ago.month, 1.month.ago.year, current_group).any? %>
   <%= filter_links t("expense.current_month"), overview_expenses_path(month: Date.today.month, year: Date.today.year) %>
 <% end %>
 

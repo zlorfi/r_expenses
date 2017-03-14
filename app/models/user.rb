@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   validates :username, :email, presence: true
   validates :username, :email, uniqueness: true
+  validates :group, presence: true
+
+  belongs_to :group
 
   def ensure_authentication_token
     if authentication_token.blank?

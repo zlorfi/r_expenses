@@ -4,11 +4,11 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.paginate(page: params[:page],
-                                 per_page: (params[:per_page] || 15))
-                                 .filter(params.slice(:category))
-                                 .order(purchesed_on: :asc)
-                                 .reverse_order
+    @expenses = Expense.given_group(current_user.group_id)
+                       .paginate(page: params[:page], per_page: (params[:per_page] || 15))
+                       .filter(params.slice(:category))
+                       .order(purchesed_on: :asc)
+                       .reverse_order
   end
 
   # GET /expenses/1
