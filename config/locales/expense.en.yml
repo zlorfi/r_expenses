@@ -42,3 +42,12 @@ en:
       ride_costs: 'Ride costs'
       maintenance: 'Maintenance'
       various: 'Various'
+  user:
+    change_account: Change account
+    leave_password_blank: leave blank if you don't want to change it
+    update_account: Update account
+    password_length: " (%{lenght} characters minimum)"
+    password_needed: we need your current password to confirm your changes
+    password: New password
+    password_confirmation: Conmfirm new password
+    current_password: Current password

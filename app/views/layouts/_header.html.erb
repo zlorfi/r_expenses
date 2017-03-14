@@ -5,16 +5,20 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <% end %>
-    <%= link_to controller.controller_name, root_path, class: 'navbar-brand'%>
+    <%= link_to 'expenses', root_path, class: 'navbar-brand'%>
     <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <%= nav_bar do %>
-          <%= nav_link t('expense.index'), expenses_path(show: 'all') %>
-          <%= nav_link t('expense.overview'), overview_expenses_path(month: given_month, year: given_year) %>
-          <%= nav_link t('expense.sign_out'), logout_path %>
-        <% end %>
-      </div>
+      <%= nav_bar do %>
+        <%= nav_link t('expense.index'), expenses_path(show: 'all') %>
+        <%= nav_link t('expense.overview'), overview_expenses_path(month: given_month, year: given_year) %>
+        <li class="nav-item dropdown">
+          <%= link_to 'Account', '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenuLink', data: {toggle: 'dropdown'},  'aria-haspopup' => 'true', 'aria-expanded' => 'false' %>
+          <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+            <%= link_to t('user.change_account'), edit_user_registration_path, class: 'dropdown-item' %>
+            <%= link_to t('expense.sign_out'), logout_path, class: 'dropdown-item' %>
+          </div>
+        </li>
+      <% end %>
     </div>
     <% end %>
   </nav>

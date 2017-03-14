@@ -40,3 +40,12 @@ de:
       ride_costs: 'Fahrtkosten'
       maintenance: 'Anschaffung'
       various: 'Andere'
+  user:
+    change_account: Account anpassen
+    leave_password_blank: Feld frei lassen, wenn das Passwort nicht verändert werden soll
+    update_account: Account anpassen
+    password_length: " (mindestens %{lenght} Zeichen)"
+    password_needed: Das Passwort wird benötigt um Änderungen vornehmen zu können.
+    password: 'Neues Passwort'
+    password_confirmation: Neues Passwort bestätigen
+    current_password: Aktuelles Passwort

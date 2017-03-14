@@ -9,4 +9,9 @@
 
 <%= render 'display_table', expenses: @expenses %>
 
+<div class='hidden-sm-down'>
 <%= will_paginate @expenses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+<div class='hidden-md-up'>
+<%= will_paginate @expenses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, page_links: false %>
+</div>

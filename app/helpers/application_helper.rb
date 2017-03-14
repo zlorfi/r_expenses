@@ -1,13 +1,15 @@
 module ApplicationHelper
   def nav_bar
-    content_tag(:div, class: 'navbar-nav float-right') do
+    content_tag(:ul, class: 'navbar-nav') do
       yield
     end
   end
 
   def nav_link(text, path)
-    link_class = current_page?(path.split('?').first) ? "nav-item nav-link active" : "nav-item nav-link"
-    link_to text, path, class: link_class
+    link_class = current_page?(path.split('?').first) ? 'nav-link active' : 'nav-link'
+    content_tag(:li, class: 'nav-item') do
+      link_to text, path, class: link_class
+    end
   end
 
   def filter_nav_bar

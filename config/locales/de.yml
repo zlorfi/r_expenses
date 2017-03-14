@@ -1,6 +1,8 @@
----
 de:
   activerecord:
+    attributes:
+      user:
+        password: Passwort
     errors:
       messages:
         record_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
