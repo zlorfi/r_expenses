@@ -1,10 +1,11 @@
 class ExpensesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
 
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.given_group(current_user.group_id)
+    @expenses = Expense.given_organization(current_user.organization_id)
                        .paginate(page: params[:page], per_page: (params[:per_page] || 15))
                        .filter(params.slice(:category))
                        .order(purchesed_on: :asc)
@@ -13,8 +14,7 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/1
   # GET /expenses/1.json
-  def show
-  end
+  def show; end
 
   # GET /expenses/new
   def new
@@ -22,8 +22,7 @@ class ExpensesController < ApplicationController
   end
 
   # GET /expenses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /expenses
   # POST /expenses.json
@@ -66,17 +65,17 @@ class ExpensesController < ApplicationController
   end
 
   # GET /expenses/overview
-  def overview
-  end
+  def overview; end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_expense
-      @expense = Expense.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def expense_params
-      params.require(:expense).permit(:title, :amount, :category, :purchesed_on, :intake)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_expense
+    @expense = Expense.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def expense_params
+    params.require(:expense).permit(:title, :amount, :category, :purchesed_on, :intake)
+  end
 end

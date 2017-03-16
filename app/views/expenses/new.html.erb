@@ -5,4 +5,4 @@
 
 <hr>
 
-<%= render 'display_table', expenses: Expense.given_group(current_group).order(id: :asc).reverse_order.limit(5) %>
+<%= render 'display_table', expenses: Expense.given_organization(current_organization).order(id: :asc).reverse_order.limit(5) %>

@@ -49,3 +49,6 @@ de:
     password: 'Neues Passwort'
     password_confirmation: Neues Passwort bestätigen
     current_password: Aktuelles Passwort
+  unauthorized:
+    manage:
+      all: 'Sie sind nicht berechtigt diese Resource anzuzeigen.'

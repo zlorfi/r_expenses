@@ -1,5 +1,5 @@
 module UsersHelper
-  def current_group
-    current_user.group_id
+  def current_organization
+    current_user.organization_id
   end
 end
