@@ -8,7 +8,7 @@
                 .group(:category)
                 .sum(:amount)
                 .each do |category, amount| %>
-        ['<%= category_name(category) %>', <%= amount %>],
+        ['<%= category_long_name(category) %>', <%= amount %>],
       <% end %>
     ]);
 

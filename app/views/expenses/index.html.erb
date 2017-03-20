@@ -1,7 +1,7 @@
 <%= filter_nav_bar do %>
   <%= filter_links t('expense.short_form.all'), expenses_path(show: 'all') %>
-  <% Expense::CATEGORIES.each do |key, value| %>
-    <%= filter_links t("expense.short_form.#{key}"), expenses_path(category: key) %>
+  <% Category.find_each do |category| %>
+    <%= filter_links category_short_name(category), expenses_path(category: category.id) %>
   <% end %>
 <% end %>
 

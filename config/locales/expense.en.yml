@@ -34,14 +34,6 @@ en:
     confirm_delete: Are you sure?
     short_form:
       all: All
-      living: 'Living'
-      foods: 'Foods'
-      supplements: 'Supplements'
-      hygiene: 'Hygiene'
-      entertainment: 'Entertainment'
-      ride_costs: 'Ride costs'
-      maintenance: 'Maintenance'
-      various: 'Various'
   user:
     change_account: Change account
     leave_password_blank: leave blank if you don't want to change it

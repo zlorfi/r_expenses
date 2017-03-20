@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314082259) do
+ActiveRecord::Schema.define(version: 20170320120524) do
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "short_name_de"
+    t.string   "long_name_de"
+    t.string   "short_name_en"
+    t.string   "long_name_en"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "expenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -21,6 +30,8 @@ ActiveRecord::Schema.define(version: 20170314082259) do
     t.integer  "user_id"
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_expenses_on_category_id", using: :btree
     t.index ["purchesed_on"], name: "index_expenses_on_purchesed_on", using: :btree
     t.index ["user_id"], name: "index_expenses_on_user_id", using: :btree
   end
@@ -50,5 +61,6 @@ ActiveRecord::Schema.define(version: 20170314082259) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "users", "organizations", column: "organization_id"
+  add_foreign_key "expenses", "categories"
+  add_foreign_key "users", "organizations"
 end

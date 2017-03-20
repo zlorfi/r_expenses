@@ -32,14 +32,6 @@ de:
     confirm_delete: Sind Sie sicher?
     short_form:
       all: Alle
-      living: 'Wohnen'
-      foods: 'Essen'
-      supplements: 'Genießen'
-      hygiene: 'Körper'
-      entertainment: 'Hobby'
-      ride_costs: 'Fahrtkosten'
-      maintenance: 'Anschaffung'
-      various: 'Andere'
   user:
     change_account: Account anpassen
     leave_password_blank: Feld frei lassen, wenn das Passwort nicht verändert werden soll

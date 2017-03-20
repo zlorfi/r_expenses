@@ -5,7 +5,8 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.given_organization(current_user.organization_id)
+    @expenses = Expense.includes(:category)
+                       .given_organization(current_user.organization_id)
                        .paginate(page: params[:page], per_page: (params[:per_page] || 15))
                        .filter(params.slice(:category))
                        .order(purchesed_on: :asc)
@@ -76,6 +77,6 @@ class ExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def expense_params
-    params.require(:expense).permit(:title, :amount, :category, :purchesed_on, :intake)
+    params.require(:expense).permit(:title, :amount, :category_id, :purchesed_on, :intake)
   end
 end

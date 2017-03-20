@@ -14,8 +14,12 @@ module ExpensesHelper
     end
   end
 
-  def category_name(category)
-    Expense::CATEGORIES.fetch(category.to_sym, '')
+  def category_long_name(category)
+    category.send("long_name_#{I18n.locale}") unless category.nil?
+  end
+
+  def category_short_name(category)
+    category.send("short_name_#{I18n.locale}") unless category.nil?
   end
 
   def given_month
