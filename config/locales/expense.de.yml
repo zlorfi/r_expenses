@@ -1,5 +1,8 @@
 de:
   helpers:
+    submit:
+      create: Eintrag erstellen
+      update: Eintrag anpassen
     placeholder:
       user:
         email: Login
@@ -14,8 +17,6 @@ de:
     intake_checkbox: Dies ist eine Einnahme
     purchesed_on: Datum
     category: Kategorie
-    create: Eintrag erstellen
-    update: Eintrag anpassen
     index: Einträge
     overview: Auswertung
     sign_out: Ausloggen

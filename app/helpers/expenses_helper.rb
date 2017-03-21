@@ -6,14 +6,6 @@ module ExpensesHelper
     end
   end
 
-  def set_button_text
-    if controller_name.eql?('expenses') && action_name.eql?('edit')
-      t('expense.update')
-    else
-      t('expense.create')
-    end
-  end
-
   def category_long_name(category)
     category.send("long_name_#{I18n.locale}") unless category.nil?
   end

@@ -9,8 +9,8 @@
                Category.all.collect {|c| [ category_long_name(c), c.id ] },
                {include_blank: true, label: t('expense.category')},
                wrapper: { class: 'category_select'}) %>
-  <%= f.submit set_button_text, class: 'btn btn-primary' %>
+  <%= f.submit class: 'btn btn-primary' %>
   <% if controller_name.eql?('expenses') && action_name.eql?('edit')  %>
-    <%= link_to t('expense.delete_expense'), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger'%>
+    <%= link_to fa_icon('trash-o', text: t('expense.delete_expense')), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger'%>
   <% end %>
 <% end %>

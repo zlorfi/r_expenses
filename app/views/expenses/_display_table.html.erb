@@ -34,8 +34,8 @@
         <%= category_long_name(expense.category) %>
       </td>
       <td class="hidden-sm-down">
-        <%= link_to fa_icon("pencil"), edit_expense_path(expense), class: 'btn btn-primary btn-sm'%>
-        <%= link_to (fa_icon "trash-o"), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger btn-sm'%>
+        <%= link_to fa_icon('pencil'), edit_expense_path(expense), class: 'btn btn-primary btn-sm'%>
+        <%= link_to fa_icon('trash-o'), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger btn-sm'%>
       </td>
     </tr>
     <% end %>
