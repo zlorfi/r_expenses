@@ -15,13 +15,13 @@
     var intake_data = google.visualization.arrayToDataTable([
       ['Nature_of_transfer', 'Amount', { role: 'style' }],
       ['<%= I18n.t('expense.intake') %>',
-        <%= Expense.given_month_for_organization_with_intake(current_organization,
+        <%= intake = Expense.given_month_for_organization_with_intake(current_organization,
                                                              given_month,
                                                              given_year,
                                                              true).sum(:amount) %>,
         '#5cb85c'],
       ['<%= I18n.t('expense.amount') %>',
-        <%= Expense.given_month_for_organization_with_intake(current_organization,
+        <%= outtake = Expense.given_month_for_organization_with_intake(current_organization,
                                                              given_month,
                                                              given_year,
                                                              false).sum(:amount) %>,
@@ -48,6 +48,7 @@
       bars: 'horizontal',
       legend: { position: "none" },
       height: 240,
+      title: 'Diffenz: <%= number_to_currency((intake - outtake), locale: :de) %>',
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('expense_given_month'));
