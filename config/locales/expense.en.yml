@@ -35,6 +35,10 @@ en:
     confirm_delete: Are you sure?
     short_form:
       all: All
+    start_date: Start date
+    end_date: End date
+    apply_filter: Apply filter
+    clear_filter: Clear filter
   user:
     change_account: Change account
     leave_password_blank: leave blank if you don't want to change it

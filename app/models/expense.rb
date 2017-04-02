@@ -18,6 +18,10 @@ class Expense < ApplicationRecord
     given_year(year).where('MONTH(purchesed_on) = ?', month).given_organization(organization_id)
   }
   scope :category, ->(category) { where(category: category) }
+  scope :in_between, ->(start_date, end_date) {
+    return unless start_date.present? && end_date.present?
+    where(purchesed_on: start_date..end_date)
+  }
 
   def self.given_month_for_organization_with_intake(organization_id,
                                                     month = Date.today.month,

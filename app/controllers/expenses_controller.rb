@@ -9,6 +9,7 @@ class ExpensesController < ApplicationController
                        .given_organization(current_user.organization_id)
                        .paginate(page: params[:page], per_page: (params[:per_page] || 15))
                        .filter(params.slice(:category))
+                       .in_between(params[:start_date], params[:end_date])
                        .order(purchesed_on: :asc)
                        .reverse_order
   end

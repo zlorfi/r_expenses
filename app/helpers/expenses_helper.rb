@@ -7,11 +7,11 @@ module ExpensesHelper
   end
 
   def category_long_name(category)
-    category.send("long_name_#{I18n.locale}") unless category.nil?
+    category.send("long_name_#{I18n.locale || 'de'}") unless category.nil?
   end
 
   def category_short_name(category)
-    category.send("short_name_#{I18n.locale}") unless category.nil?
+    category.send("short_name_#{I18n.locale || 'de'}") unless category.nil?
   end
 
   def given_month
