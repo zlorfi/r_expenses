@@ -12,6 +12,9 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if current_page?(controller: 'expenses', action: 'overview') %>
+      <%= javascript_include_tag 'charts/loader', 'data-turbolinks-track': 'reload' %>
+    <% end %>
   </head>
 
   <body>
@@ -29,8 +32,5 @@
       </footer>
 
     </div> <!-- /container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
   </body>
 </html>
