@@ -1,3 +1,7 @@
+<% content_for :charts do %>
+  <%= javascript_include_tag 'charts/loader', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 <script>
   google.charts.load('current', {packages: ['corechart']});
   google.charts.setOnLoadCallback(drawChart);
