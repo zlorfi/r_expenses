@@ -14,13 +14,13 @@
 
     var intake_data = google.visualization.arrayToDataTable([
       ['Nature_of_transfer', 'Amount', { role: 'style' }],
-      ['<%= I18n.t('expense.intake') %>',
+      ['<%= t('expense.intake') %>',
         <%= intake = Expense.given_month_for_organization_with_intake(current_organization,
                                                              given_month,
                                                              given_year,
                                                              true).sum(:amount) %>,
         '#5cb85c'],
-      ['<%= I18n.t('expense.amount') %>',
+      ['<%= t('expense.amount') %>',
         <%= outtake = Expense.given_month_for_organization_with_intake(current_organization,
                                                              given_month,
                                                              given_year,
@@ -48,7 +48,7 @@
       bars: 'horizontal',
       legend: { position: "none" },
       height: 240,
-      title: 'Diffenz: <%= number_to_currency((intake - outtake), locale: :de) %>',
+      title: '<%= t('expense.difference') %>: <%= number_to_currency((intake - outtake), locale: :de) %>',
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('expense_given_month'));
@@ -77,5 +77,5 @@
     <%= l(DateTime.parse(Date::MONTHNAMES[given_month.to_i]), format: "%B") %> <%= given_year %>
   </small>
 </h1>
-<div id='expense_given_month' class='chart'></div>
-<div id='intake_given_month' class='chart'></div>
+<div id='expense_given_month' class='chart'><div class='loading'>Loading....</div></div>
+<div id='intake_given_month' class='chart'><div class='loading'>Loading....</div></div>

@@ -39,6 +39,7 @@ en:
     end_date: End date
     apply_filter: Apply filter
     clear_filter: Clear filter
+    difference: Difference
   user:
     change_account: Change account
     leave_password_blank: leave blank if you don't want to change it
