@@ -11,7 +11,7 @@ gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'b
 gem 'cancancan'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', github: 'plataformatec/devise'
-gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0'
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2'
 gem 'puma', '~> 3.7'

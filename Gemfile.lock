@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/bokmann/font-awesome-rails.git
-  revision: 6875363e13230e0c9266602e1cdc411e042c1f9f
-  specs:
-    font-awesome-rails (4.7.0.2)
-      railties (>= 3.2, < 5.2)
-
-GIT
   remote: https://github.com/bootstrap-ruby/rails-bootstrap-forms.git
   revision: 7d4043ed9ca2a0fc8ab4fc867dc7c69c32fe0d02
   branch: bootstrap-v4
@@ -113,6 +106,8 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.17)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.1)
@@ -247,7 +242,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise!
   faker
-  font-awesome-rails!
+  font-awesome-rails (~> 4.7.0)
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
   mysql2
