@@ -6,43 +6,35 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'coffee-rails', '~> 4.2'
-gem 'jquery-rails'
-gem 'mysql2'
-gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.0.2'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
-gem 'font-awesome-rails'
-# gem 'will_paginate', '~> 3.1.0'
+gem 'cancancan'
+gem 'coffee-rails', '~> 4.2'
+gem 'devise', github: 'plataformatec/devise'
+gem 'font-awesome-rails', github: 'bokmann/font-awesome-rails'
+gem 'jbuilder', '~> 2.5'
+gem 'mysql2'
+gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.1.0'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'turbolinks', '~> 5'
 gem 'will_paginate-bootstrap4'
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery', '>= 3.2.1'
   gem 'rails-assets-tether', '>= 1.3.3'
 end
 
-gem 'cancancan'
-gem 'devise'
-
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'better_errors'
+  gem 'better_errors', '~> 2.1.1'
   gem 'binding_of_caller'
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rails', '~> 1.2'
+  gem 'faker'
   gem 'pry-rails'
   gem 'rubocop', '~> 0.47.1', require: false
-  gem 'faker'
 end
 
 group :development do
