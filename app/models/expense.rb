@@ -6,7 +6,7 @@ class Expense < ApplicationRecord
   has_one :organization, through: :user
 
   validates :title, :amount, :purchesed_on, presence: true
-  validates :category, presence: true, unless: 'intake?'
+  validates :category, presence: true, unless: :intake?
   validates :amount, numericality: true
 
   # column no longer nedded, after migrating vom constant to model
@@ -23,6 +23,7 @@ class Expense < ApplicationRecord
       where(purchesed_on: start_date..end_date)
     end
   }
+  scope :date_list, -> { distinct.pluck(:purchesed_on).map{|item| [item.month, item.year]}.uniq }
 
   def self.given_month_for_organization_with_intake(organization_id,
                                                     month = Date.today.month,
