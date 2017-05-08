@@ -15,10 +15,11 @@ en:
     amount: Amount
     intake: Intake
     intake_checkbox: This is an intake
-    purchesed_on: Purchesed on
+    purchased_on: Purchesed on
     category: Category
     index: Entries
     overview: Overview
+    overview_moth_select: Select month
     sign_out: Sign out
     successfully_created: 'Expense was successfully created.'
     successfully_updated: 'Expense was successfully updated.'

@@ -10,7 +10,7 @@ class ExpensesController < ApplicationController
                        .paginate(page: params[:page], per_page: (params[:per_page] || 15))
                        .filter(params.slice(:category))
                        .in_between(params[:start_date], params[:end_date])
-                       .order(purchesed_on: :asc)
+                       .order(:purchased_on, :id)
                        .reverse_order
   end
 
@@ -67,7 +67,11 @@ class ExpensesController < ApplicationController
   end
 
   # GET /expenses/overview
-  def overview; end
+  def overview
+    return unless params[:date_list]
+    year, month = params[:date_list].split('_')
+    redirect_to overview_expenses_path(month: month, year: year)
+  end
 
   private
 
@@ -78,6 +82,6 @@ class ExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def expense_params
-    params.require(:expense).permit(:title, :amount, :category_id, :purchesed_on, :intake)
+    params.require(:expense).permit(:title, :amount, :category_id, :purchased_on, :intake)
   end
 end

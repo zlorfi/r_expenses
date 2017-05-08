@@ -8,3 +8,7 @@ $(document).ready ->
     else
       $('.category_select').show()
     return
+
+  $('#date_list').on 'change', (e) ->
+    @form.submit()
+    return

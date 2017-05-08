@@ -28,7 +28,7 @@ module ApplicationHelper
     if object.new_record?
       Date.today
     else
-      object.purchesed_on
+      object.purchased_on
     end
   end
 

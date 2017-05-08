@@ -4,7 +4,7 @@
   <%= f.form_group :intake do %>
     <%= f.check_box :intake, label: t('expense.intake_checkbox') %>
   <% end %>
-  <%= f.date_field :purchesed_on, label: t('expense.purchesed_on'), value: transform_value(expense) %>
+  <%= f.date_field :purchased_on, label: t('expense.purchased_on'), value: transform_value(expense) %>
   <%= f.select('category_id',
                Category.all.collect {|c| [ category_long_name(c), c.id ] },
                {include_blank: true, label: t('expense.category')},

@@ -15,10 +15,11 @@ de:
     amount: Ausgabe
     intake: Einnahmen
     intake_checkbox: Dies ist eine Einnahme
-    purchesed_on: Datum
+    purchased_on: Datum
     category: Kategorie
     index: Einträge
     overview: Auswertung
+    overview_moth_select: Monatsauswahl
     sign_out: Ausloggen
     successfully_created: 'Eintrag erfolgreich verbucht'
     successfully_updated: 'Eintrag erfolgreich editiert'
