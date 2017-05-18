@@ -235,7 +235,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap (~> 4.0.0.alpha6)
   bootstrap_form!
-  cancancan
+  cancancan (~> 1.16.0)
   capistrano (~> 3.6)
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.2)
@@ -245,7 +245,7 @@ DEPENDENCIES
   font-awesome-rails (~> 4.7.0)
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
-  mysql2
+  mysql2 (~> 0.4.5)
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.0)

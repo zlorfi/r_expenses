@@ -22,7 +22,7 @@ end
   Expense.create(
     title: Faker::Commerce.product_name,
     amount: Faker::Commerce.price,
-    purchased_on: Faker::Date.between(3.months.ago, Date.today),
+    purchased_on: Faker::Date.between(5.months.ago, Date.today),
     intake: intake,
     user_id: user.id,
     category_id: (intake ? nil : Category.all.sample.id)

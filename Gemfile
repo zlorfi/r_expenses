@@ -8,18 +8,18 @@ end
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'bootstrap-v4'
-gem 'cancancan'
+gem 'cancancan', '~> 1.16.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.3.0'
 gem 'font-awesome-rails', '~> 4.7.0'
 gem 'jbuilder', '~> 2.5'
-gem 'mysql2'
+gem 'mysql2', '~> 0.4.5'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.0'
 # gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails', '~> 1.3.0'
-gem 'uglifier', '>= 1.3.0'
 gem 'turbolinks', '~> 5'
+gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate-bootstrap4'
 
 source 'https://rails-assets.org' do
