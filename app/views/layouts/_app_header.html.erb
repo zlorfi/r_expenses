@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <%= nav_bar do %>
         <%= nav_link t('expense.index'), expenses_path %>
-        <%= nav_link t('expense.overview'), overview_expenses_path(month: given_month, year: given_year) %>
+        <%= nav_link t('expense.month_overview'), overview_expenses_path(month: given_month, year: given_year) %>
         <li class="nav-item dropdown">
           <%= link_to 'Account', '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenuLink', data: {toggle: 'dropdown'},  'aria-haspopup' => 'true', 'aria-expanded' => 'false' %>
           <div class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>

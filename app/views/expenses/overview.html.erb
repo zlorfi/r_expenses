@@ -32,11 +32,18 @@
         '#d9534f']
     ]);
 
+    var year_overview = google.visualization.arrayToDataTable(
+        <%= raw Expense.generate_linechart_from_sql %>
+    );
+
     var formatter = new google.visualization.NumberFormat({suffix: '€',
                                                            decimalSymbol: ',',
                                                            groupingSymbol: '.'});
     formatter.format(expense_data, 1); // Apply formatter to second column
     formatter.format(intake_data, 1); // Apply formatter to second column
+    <% (1..Category.count).each do |index| %>
+    formatter.format(year_overview, <%= index %>);
+    <% end %>
 
     var expense_options = {
       pieHole: 0.4,
@@ -55,11 +62,22 @@
       title: '<%= t('expense.difference') %>: <%= number_to_currency((intake - outtake), locale: :de) %>',
     };
 
+    var year_options = {
+      height: 500,
+      selectionMode: 'multiple',
+      vAxis: {
+        format: '#.### €'
+      }
+    }
+
     var chart = new google.visualization.PieChart(document.getElementById('expense_given_month'));
     chart.draw(expense_data, expense_options);
 
     var chart_2 = new google.visualization.BarChart(document.getElementById('intake_given_month'));
     chart_2.draw(intake_data, intake_options);
+
+    var chart_3 = new google.visualization.LineChart(document.getElementById('year_overview'));
+    chart_3.draw(year_overview, year_options);
   }
 
   $(window).resize(function(){
@@ -77,10 +95,11 @@
 <hr>
 
 <h1>
-  <%= t('expense.overview') %>
+  <%= t('expense.month_overview') %>
   <small class="text-muted">
     <%= l(DateTime.parse(Date::MONTHNAMES[given_month.to_i]), format: '%B') %> <%= given_year %>
   </small>
 </h1>
 <div id='expense_given_month' class='chart'><div class='loading'>Loading....</div></div>
 <div id='intake_given_month' class='chart'><div class='loading'>Loading....</div></div>
+<div id='year_overview' class='chart hidden-sm-down'><div class='loading'>Loading....</div></div>

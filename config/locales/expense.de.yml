@@ -18,7 +18,8 @@ de:
     purchased_on: Datum
     category: Kategorie
     index: Einträge
-    overview: Auswertung
+    month_overview: Monatsauswertung
+    year_overview: Jahesauswertung
     overview_moth_select: Monatsauswahl
     sign_out: Ausloggen
     successfully_created: 'Eintrag erfolgreich verbucht'

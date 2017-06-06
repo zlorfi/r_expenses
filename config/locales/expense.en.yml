@@ -18,7 +18,8 @@ en:
     purchased_on: Purchesed on
     category: Category
     index: Entries
-    overview: Overview
+    month_overview: Month overview
+    year_overview: Year overview
     overview_moth_select: Select month
     sign_out: Sign out
     successfully_created: 'Expense was successfully created.'

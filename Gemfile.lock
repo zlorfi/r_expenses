@@ -63,7 +63,7 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     builder (3.2.3)
-    cancancan (1.16.0)
+    cancancan (2.0.0)
     capistrano (3.7.2)
       airbrussh (>= 1.0.0)
       capistrano-harrow
@@ -133,6 +133,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.4.0.0)
       ast (~> 2.2)
+    pivot_table (1.0.0)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -235,7 +236,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap (~> 4.0.0.alpha6)
   bootstrap_form!
-  cancancan (~> 1.16.0)
+  cancancan (~> 2.0.0)
   capistrano (~> 3.6)
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.2)
@@ -246,6 +247,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (~> 3.0.5)
   mysql2 (~> 0.4.5)
+  pivot_table
   pry-rails
   puma (~> 3.7)
   rails (~> 5.1.1)
@@ -258,4 +260,4 @@ DEPENDENCIES
   will_paginate-bootstrap4
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
