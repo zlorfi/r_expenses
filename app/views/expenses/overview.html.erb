@@ -33,7 +33,7 @@
     ]);
 
     var year_overview = google.visualization.arrayToDataTable(
-        <%= raw Expense.generate_linechart_from_sql %>
+        <%= raw Expense.generate_linechart_from_sql(current_organization) %>
     );
 
     var formatter = new google.visualization.NumberFormat({suffix: '€',

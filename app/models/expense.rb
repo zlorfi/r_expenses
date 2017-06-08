@@ -38,20 +38,22 @@ class Expense < ApplicationRecord
     ["#{I18n.l(DateTime.parse(Date::MONTHNAMES[month.to_i]), format: '%B')} #{year}", "#{year}_#{month}"]
   end
 
-  def self.generate_year_overview_from_sql_query
+  def self.generate_year_overview_from_sql_query(organisation_id)
     query = ''
     query << 'SELECT EXTRACT(YEAR_MONTH FROM purchased_on) AS Purchased'
     Category.all.each do |category|
       query << ", SUM(IF(category_id = #{category.id}, amount, 0)) AS #{category.short_name_de}"
     end
-    query << ' FROM expenses GROUP BY EXTRACT(YEAR_MONTH FROM purchased_on)'
+    query << ' FROM expenses INNER JOIN users ON users.id = expenses.user_id'
+    query << " WHERE users.organization_id = #{organisation_id}"
+    query << ' GROUP BY EXTRACT(YEAR_MONTH FROM purchased_on)'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
-  def self.generate_linechart_from_sql
+  def self.generate_linechart_from_sql(organisation_id)
     line_chart_array = []
-    line_chart_array << generate_year_overview_from_sql_query.columns
-    generate_year_overview_from_sql_query.rows.each do |row|
+    line_chart_array << generate_year_overview_from_sql_query(organisation_id).columns
+    generate_year_overview_from_sql_query(organisation_id).rows.each do |row|
       line_chart_array << row.map do |data|
         data.is_a?(BigDecimal) ? data.to_f : I18n.l(Date.strptime(data.to_s, '%Y%m'), format: '%B %Y')
       end
