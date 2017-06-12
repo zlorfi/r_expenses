@@ -3,30 +3,54 @@
 <% end %>
 
 <script>
-  google.charts.load('current', {packages: ['corechart']});
+  google.charts.load('current', {'packages':['line', 'bar']});
   google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
-    var year_overview = google.visualization.arrayToDataTable(
-        <%= raw Expense.generate_linechart_from_sql(current_organization) %>
+    var year_categories = google.visualization.arrayToDataTable(
+      <%= raw Expense.generate_linechart(current_organization) %>
+    );
+    var intake = google.visualization.arrayToDataTable(
+      <%= raw Expense.generate_barchart(current_organization) %>
     );
 
+    // formating charts
     var formatter = new google.visualization.NumberFormat({suffix: '€',
                                                            decimalSymbol: ',',
                                                            groupingSymbol: '.'});
     <% (1..Category.count).each do |index| %>
-    formatter.format(year_overview, <%= index %>);
+    formatter.format(year_categories, <%= index %>);
     <% end %>
+    formatter.format(intake, 1)
+    formatter.format(intake, 2)
 
     var year_options = {
       height: 500,
+      hAxis: {
+        title: ''
+      },
       selectionMode: 'multiple',
       vAxis: {
         format: '#.### €'
       }
     }
 
-    var chart = new google.visualization.LineChart(document.getElementById('year_overview'));
-    chart.draw(year_overview, year_options);
+    var intake_options = {
+      height: 400,
+      hAxis: {
+        title: ''
+      },
+      vAxis: {
+        format: '#.### €'
+      },
+      colors: ['#5cb85c', '#d9534f'],
+      // bars: 'horizontal'
+    }
+
+    var chart = new google.charts.Line(document.getElementById('year_categories'));
+    chart.draw(year_categories, google.charts.Line.convertOptions(year_options));
+
+    var chart2 = new google.charts.Bar(document.getElementById('year_sums'));
+    chart2.draw(intake, google.charts.Bar.convertOptions(intake_options));
   }
 
   $(window).resize(function(){
@@ -37,4 +61,5 @@
 <h1>
   <%= t('expense.year_overview') %>
 </h1>
-<div id='year_overview' class='chart'><div class='loading'>Loading....</div></div>
+<div id='year_categories' class='chart'><div class='loading'>Loading....</div></div>
+<div id='year_sums' class='chart'><div class='loading'>Loading....</div></div>

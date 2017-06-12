@@ -38,29 +38,54 @@ class Expense < ApplicationRecord
     ["#{I18n.l(DateTime.parse(Date::MONTHNAMES[month.to_i]), format: '%B')} #{year}", "#{year}_#{month}"]
   end
 
-  def self.generate_year_overview_from_sql_query(organisation_id)
-    return nil unless Organization.exists?(id: organisation_id)
+  def self.generate_linechart_from_sql_query(organization_id)
+    return nil unless Organization.exists?(id: organization_id)
     query = ''
-    query << 'SELECT EXTRACT(YEAR_MONTH FROM purchased_on) AS Purchased'
+    query << 'SELECT EXTRACT(YEAR_MONTH FROM purchased_on) AS PurchasedOn'
     Category.all.each do |category|
       query << ", SUM(IF(category_id = #{category.id}, amount, 0)) AS #{category.short_name_de}"
     end
     query << ' FROM expenses INNER JOIN users ON users.id = expenses.user_id'
-    query << " WHERE users.organization_id = #{organisation_id}"
+    query << " WHERE users.organization_id = #{organization_id}"
     query << ' GROUP BY EXTRACT(YEAR_MONTH FROM purchased_on)'
     ActiveRecord::Base.connection.exec_query(query)
   end
 
-  def self.generate_linechart_from_sql(organisation_id)
-    return nil unless Organization.exists?(id: organisation_id)
-    line_chart_array = []
-    year_overview = generate_year_overview_from_sql_query(organisation_id)
-    line_chart_array << year_overview.columns
-    year_overview.rows.each do |row|
-      line_chart_array << row.map do |data|
+  def self.generate_linechart(organization_id)
+    return nil unless Organization.exists?(id: organization_id)
+    line_chart = []
+    annual_overview = generate_linechart_from_sql_query(organization_id)
+    line_chart << annual_overview.columns
+    annual_overview.rows.each do |row|
+      line_chart << row.map do |data|
         data.is_a?(BigDecimal) ? data.to_f : I18n.l(Date.strptime(data.to_s, '%Y%m'), format: '%B %Y')
       end
     end
-    line_chart_array
+    line_chart
+  end
+
+  def self.generate_barchart_from_sql_query(organization_id)
+    return nil unless Organization.exists?(id: organization_id)
+    query = ''
+    query << 'SELECT EXTRACT(YEAR_MONTH FROM purchased_on) AS PurchasedOn'
+    query << ", SUM(IF(intake = 1, amount, 0)) AS #{I18n.t('expense.intake')}"
+    query << ", SUM(IF(intake = 0, amount, 0)) AS #{I18n.t('expense.outgoings')}"
+    query << ' FROM expenses INNER JOIN users ON users.id = expenses.user_id'
+    query << " WHERE users.organization_id = #{organization_id}"
+    query << ' GROUP BY EXTRACT(YEAR_MONTH FROM purchased_on)'
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  def self.generate_barchart(organization_id)
+    return nil unless Organization.exists?(id: organization_id)
+    bar_chart = []
+    overview = generate_barchart_from_sql_query(organization_id)
+    bar_chart << overview.columns
+    overview.rows.each do |row|
+      bar_chart << row.map do |data|
+        data.is_a?(BigDecimal) ? data.to_f : I18n.l(Date.strptime(data.to_s, '%Y%m'), format: '%B %Y')
+      end
+    end
+    bar_chart
   end
 end

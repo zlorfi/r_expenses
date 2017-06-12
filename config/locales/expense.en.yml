@@ -14,6 +14,7 @@ en:
     title: Title
     amount: Amount
     intake: Intake
+    outgoings: Outgoings
     intake_checkbox: This is an intake
     purchased_on: Purchesed on
     category: Category

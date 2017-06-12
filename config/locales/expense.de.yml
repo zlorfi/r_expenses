@@ -14,6 +14,7 @@ de:
     title: Bezeichnung
     amount: Ausgabe
     intake: Einnahmen
+    outgoings: Ausgaben
     intake_checkbox: Dies ist eine Einnahme
     purchased_on: Datum
     category: Kategorie
