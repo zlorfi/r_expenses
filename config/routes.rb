@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   resources :expenses do
     collection do
-      get 'overview'#, constraints: lambda { |req| req.format == :html }
+      get 'month', as: 'monthly'
+      get 'year', as: 'annual'
     end
   end
 

@@ -5,10 +5,10 @@ module ApplicationHelper
     end
   end
 
-  def nav_link(text, path)
+  def nav_link(text, path, additional_classes = '')
     link_class = current_page?(path.split('?').first) ? 'nav-link active' : 'nav-link'
     content_tag(:li, class: 'nav-item') do
-      link_to text, path, class: link_class
+      link_to text, path, class: [link_class, additional_classes].join(' ')
     end
   end
 

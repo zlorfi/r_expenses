@@ -66,12 +66,15 @@ class ExpensesController < ApplicationController
     end
   end
 
-  # GET /expenses/overview
-  def overview
+  # GET /expenses/month
+  def month
     return unless params[:date_list]
     year, month = params[:date_list].split('_')
-    redirect_to overview_expenses_path(month: month, year: year)
+    redirect_to monthly_expenses_path(month: month, year: year)
   end
+
+  # GET /expenses/year
+  def year; end
 
   private
 

@@ -1,0 +1,40 @@
+<% content_for :charts do %>
+  <%= javascript_include_tag 'charts/loader', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
+<script>
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var year_overview = google.visualization.arrayToDataTable(
+        <%= raw Expense.generate_linechart_from_sql(current_organization) %>
+    );
+
+    var formatter = new google.visualization.NumberFormat({suffix: '€',
+                                                           decimalSymbol: ',',
+                                                           groupingSymbol: '.'});
+    <% (1..Category.count).each do |index| %>
+    formatter.format(year_overview, <%= index %>);
+    <% end %>
+
+    var year_options = {
+      height: 500,
+      selectionMode: 'multiple',
+      vAxis: {
+        format: '#.### €'
+      }
+    }
+
+    var chart = new google.visualization.LineChart(document.getElementById('year_overview'));
+    chart.draw(year_overview, year_options);
+  }
+
+  $(window).resize(function(){
+    drawChart();
+  });
+</script>
+
+<h1>
+  <%= t('expense.year_overview') %>
+</h1>
+<div id='year_overview' class='chart'><div class='loading'>Loading....</div></div>

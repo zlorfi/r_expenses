@@ -32,18 +32,11 @@
         '#d9534f']
     ]);
 
-    var year_overview = google.visualization.arrayToDataTable(
-        <%= raw Expense.generate_linechart_from_sql(current_organization) %>
-    );
-
     var formatter = new google.visualization.NumberFormat({suffix: '€',
                                                            decimalSymbol: ',',
                                                            groupingSymbol: '.'});
     formatter.format(expense_data, 1); // Apply formatter to second column
     formatter.format(intake_data, 1); // Apply formatter to second column
-    <% (1..Category.count).each do |index| %>
-    formatter.format(year_overview, <%= index %>);
-    <% end %>
 
     var expense_options = {
       pieHole: 0.4,
@@ -62,22 +55,11 @@
       title: '<%= t('expense.difference') %>: <%= number_to_currency((intake - outtake), locale: :de) %>',
     };
 
-    var year_options = {
-      height: 500,
-      selectionMode: 'multiple',
-      vAxis: {
-        format: '#.### €'
-      }
-    }
-
     var chart = new google.visualization.PieChart(document.getElementById('expense_given_month'));
     chart.draw(expense_data, expense_options);
 
     var chart_2 = new google.visualization.BarChart(document.getElementById('intake_given_month'));
     chart_2.draw(intake_data, intake_options);
-
-    var chart_3 = new google.visualization.LineChart(document.getElementById('year_overview'));
-    chart_3.draw(year_overview, year_options);
   }
 
   $(window).resize(function(){
@@ -85,7 +67,7 @@
   });
 </script>
 
-<%= bootstrap_form_tag(url: overview_expenses_path, method: :get) do |f| %>
+<%= bootstrap_form_tag(url: monthly_expenses_path, method: :get) do |f| %>
   <%= f.select('date_list',
                Expense.date_list,
                {include_blank: true, label: t('expense.overview_moth_select')},
@@ -102,4 +84,3 @@
 </h1>
 <div id='expense_given_month' class='chart'><div class='loading'>Loading....</div></div>
 <div id='intake_given_month' class='chart'><div class='loading'>Loading....</div></div>
-<div id='year_overview' class='chart hidden-sm-down'><div class='loading'>Loading....</div></div>

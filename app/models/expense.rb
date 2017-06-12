@@ -39,6 +39,7 @@ class Expense < ApplicationRecord
   end
 
   def self.generate_year_overview_from_sql_query(organisation_id)
+    return nil unless Organization.exists?(id: organisation_id)
     query = ''
     query << 'SELECT EXTRACT(YEAR_MONTH FROM purchased_on) AS Purchased'
     Category.all.each do |category|
@@ -51,6 +52,7 @@ class Expense < ApplicationRecord
   end
 
   def self.generate_linechart_from_sql(organisation_id)
+    return nil unless Organization.exists?(id: organisation_id)
     line_chart_array = []
     line_chart_array << generate_year_overview_from_sql_query(organisation_id).columns
     generate_year_overview_from_sql_query(organisation_id).rows.each do |row|
