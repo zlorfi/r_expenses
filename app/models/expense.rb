@@ -54,8 +54,9 @@ class Expense < ApplicationRecord
   def self.generate_linechart_from_sql(organisation_id)
     return nil unless Organization.exists?(id: organisation_id)
     line_chart_array = []
-    line_chart_array << generate_year_overview_from_sql_query(organisation_id).columns
-    generate_year_overview_from_sql_query(organisation_id).rows.each do |row|
+    year_overview = generate_year_overview_from_sql_query(organisation_id)
+    line_chart_array << year_overview.columns
+    year_overview.rows.each do |row|
       line_chart_array << row.map do |data|
         data.is_a?(BigDecimal) ? data.to_f : I18n.l(Date.strptime(data.to_s, '%Y%m'), format: '%B %Y')
       end
