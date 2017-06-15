@@ -69,8 +69,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/month
   def month
     return unless params[:date_list]
-    year, month = params[:date_list].split('_')
-    redirect_to monthly_expenses_path(month: month, year: year)
+    redirect_to monthly_expenses_path(given_date: params[:date_list])
   end
 
   # GET /expenses/year

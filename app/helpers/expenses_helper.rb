@@ -2,7 +2,14 @@ module ExpensesHelper
   def mark_amount(expense)
     intake = expense.intake? ? 'text-success' : 'text-danger'
     content_tag(:div, class: intake) do
-      number_to_currency(expense.amount, locale: :de)
+      number_to_currency(expense.amount)
+    end
+  end
+
+  def color_value(expense)
+    intake = expense.negative? ? 'text-danger' : 'text-success'
+    content_tag(:small, class: intake) do
+      number_to_currency(expense)
     end
   end
 
@@ -14,11 +21,7 @@ module ExpensesHelper
     category.send("short_name_#{I18n.locale || 'de'}") unless category.nil?
   end
 
-  def given_month
-    params[:month] || Date.today.month
-  end
-
-  def given_year
-    params[:year] || Date.today.year
+  def given_date
+    params[:given_date] || Date.today.strftime('%Y%m')
   end
 end

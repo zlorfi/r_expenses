@@ -1,86 +1,85 @@
 <% content_for :charts do %>
-  <%= javascript_include_tag 'charts/loader', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'charts/d3', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'charts/c3', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'charts/c3_config_de', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <script>
-  google.charts.load('current', {packages: ['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var expense_data = google.visualization.arrayToDataTable([
-      ['Category', 'Expenses'],
-      <% Expense.given_month_for_organization_with_intake(current_organization, given_month, given_year)
-                .group(:category)
-                .sum(:amount)
-                .each do |category, amount| %>
-        ['<%= category_long_name(category) %>', <%= amount %>],
-      <% end %>
-    ]);
-
-    var intake_data = google.visualization.arrayToDataTable([
-      ['Nature_of_transfer', 'Amount', { role: 'style' }],
-      ['<%= t('expense.intake') %>',
-        <%= intake = Expense.given_month_for_organization_with_intake(current_organization,
-                                                             given_month,
-                                                             given_year,
-                                                             true).sum(:amount) %>,
-        '#5cb85c'],
-      ['<%= t('expense.outgoings') %>',
-        <%= outtake = Expense.given_month_for_organization_with_intake(current_organization,
-                                                             given_month,
-                                                             given_year,
-                                                             false).sum(:amount) %>,
-        '#d9534f']
-    ]);
-
-    var formatter = new google.visualization.NumberFormat({suffix: '€',
-                                                           decimalSymbol: ',',
-                                                           groupingSymbol: '.'});
-    formatter.format(expense_data, 1); // Apply formatter to second column
-    formatter.format(intake_data, 1); // Apply formatter to second column
-
-    var expense_options = {
-      pieHole: 0.4,
-      pieSliceText: 'percentage',
-      height: 400,
-      sliceVisibilityThreshold: .05,
-      legend: {
-        position: 'bottom'
+  $(document).ready(function(){
+    var expense_given_month = c3.generate({
+      size: {
+        height: 400
+      },
+      bindto: '#expense_given_month',
+      data: {
+        columns: [
+          <% Expense.given_date_for_organization_with_intake(current_organization, given_date)
+                    .group(:category)
+                    .sum(:amount)
+                    .each do |category, amount| %>
+            ['<%= category_long_name(category) %>', <%= amount %>],
+          <% end %>
+        ],
+        type: 'donut',
+      },
+      tooltip: {
+        format: {
+           value: function(value, ratio, id) {
+             return d3locale.numberFormat('$,.2f')(value);
+           }
+        }
       }
-    };
-
-    var intake_options = {
-      bars: 'horizontal',
-      legend: { position: "none" },
-      height: 240,
-      title: '<%= t('expense.difference') %>: <%= number_to_currency((intake - outtake), locale: :de) %>',
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById('expense_given_month'));
-    chart.draw(expense_data, expense_options);
-
-    var chart_2 = new google.visualization.BarChart(document.getElementById('intake_given_month'));
-    chart_2.draw(intake_data, intake_options);
-  }
-
-  $(window).resize(function(){
-    drawChart();
+    });
   });
 </script>
 
 <%= bootstrap_form_tag(url: monthly_expenses_path, method: :get) do |f| %>
   <%= f.select('date_list',
-               Expense.date_list,
+               Expense.date_list_array,
                {include_blank: true, label: t('expense.overview_moth_select')},
                wrapper: { class: 'category_select'}) %>
 <% end %>
 
 <hr>
 
+<% intake = Expense.given_date_for_organization_with_intake(current_organization,
+                                                            given_date,
+                                                            true).sum(:amount)
+%>
+<% outgoings = Expense.given_date_for_organization_with_intake(current_organization,
+                                                               given_date,
+                                                               false).sum(:amount)
+%>
+
 <h1>
   <%= t('expense.month_overview') %>
   <small class="text-muted">
-    <%= l(DateTime.parse(Date::MONTHNAMES[given_month.to_i]), format: '%B') %> <%= given_year %>
+    <%= l(Date.strptime(given_date, '%Y%m'), format: '%B') %> <%= Date.strptime(given_date, '%Y%m').year %>
   </small>
 </h1>
 <div id='expense_given_month' class='chart'><div class='loading'>Loading....</div></div>
-<div id='intake_given_month' class='chart'><div class='loading'>Loading....</div></div>
+
+<div class='row intake'>
+  <div class="col-md">
+    <h3>
+      <%= t('expense.intake') %>:
+      <small class="text-muted">
+        <%= number_to_currency intake %>
+      </small>
+    </h3>
+  </div>
+  <div class="col-md">
+    <h3>
+      <%= t('expense.outgoings') %>:
+      <small class="text-muted">
+        <%= number_to_currency outgoings %>
+      </small>
+    </h3>
+  </div>
+  <div class="col-md">
+    <h3>
+      <%= t('expense.difference') %>:
+      <%= color_value(intake - outgoings) %>
+    </h3>
+  </div>
+</div>

@@ -1,60 +1,54 @@
 <% content_for :charts do %>
-  <%= javascript_include_tag 'charts/loader', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'charts/d3', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'charts/c3', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'charts/c3_config_de', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
 <script>
-  google.charts.load('current', {'packages':['line', 'bar']});
-  google.charts.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var year_categories = google.visualization.arrayToDataTable(
-      <%= raw Expense.generate_linechart(current_organization) %>
-    );
-    var intake = google.visualization.arrayToDataTable(
-      <%= raw Expense.generate_barchart(current_organization) %>
-    );
-
-    // formating charts
-    var formatter = new google.visualization.NumberFormat({suffix: '€',
-                                                           decimalSymbol: ',',
-                                                           groupingSymbol: '.'});
-    <% (1..Category.count).each do |index| %>
-    formatter.format(year_categories, <%= index %>);
-    <% end %>
-    formatter.format(intake, 1)
-    formatter.format(intake, 2)
-
-    var year_options = {
-      height: 500,
-      hAxis: {
-        title: ''
+  $(document).ready(function(){
+    var year_categories = c3.generate({
+      bindto: '#year_categories',
+      data: {
+        x: 'Category',
+        columns: <%= raw Expense.generate_linechart(current_organization) %>
       },
-      selectionMode: 'multiple',
-      vAxis: {
-        format: '#.### €'
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+            format: d3locale.timeFormat('%B %Y')
+          }
+        },
+        y: {
+          min: 10,
+          tick: {
+            format: d3locale.numberFormat("$,.2f")
+          }
+        }
       }
-    }
+    });
 
-    var intake_options = {
-      height: 400,
-      hAxis: {
-        title: ''
+    var year_sums = c3.generate({
+      bindto: '#year_sums',
+      data: {
+        x: 'IntakeType',
+        columns: <%= raw Expense.generate_barchart(current_organization) %>,
+        type: 'bar'
       },
-      vAxis: {
-        format: '#.### €'
-      },
-      colors: ['#5cb85c', '#d9534f'],
-      // bars: 'horizontal'
-    }
-
-    var chart = new google.charts.Line(document.getElementById('year_categories'));
-    chart.draw(year_categories, google.charts.Line.convertOptions(year_options));
-
-    var chart2 = new google.charts.Bar(document.getElementById('year_sums'));
-    chart2.draw(intake, google.charts.Bar.convertOptions(intake_options));
-  }
-
-  $(window).resize(function(){
-    drawChart();
+      axis: {
+        x: {
+          type: 'timeseries',
+          tick: {
+            format: d3locale.timeFormat('%B %Y')
+          }
+        },
+        y: {
+          tick: {
+            format: d3locale.numberFormat("$,.2f")
+          }
+        }
+      }
+    });
   });
 </script>
 
