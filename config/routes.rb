@@ -15,5 +15,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :charts do
+    get :by_month
+    get :linechart_by_year
+    get :barchart_by_year
+  end
+
   root 'expenses#new'
 end

@@ -12,14 +12,8 @@
       },
       bindto: '#expense_given_month',
       data: {
-        columns: [
-          <% Expense.given_date_for_organization_with_intake(current_organization, given_date)
-                    .group(:category)
-                    .sum(:amount)
-                    .each do |category, amount| %>
-            ['<%= category_long_name(category) %>', <%= amount %>],
-          <% end %>
-        ],
+        url: '<%= charts_by_month_path(given_date: given_date) %>',
+        mimeType: 'json',
         type: 'donut',
       },
       tooltip: {
@@ -42,14 +36,8 @@
 
 <hr>
 
-<% intake = Expense.given_date_for_organization_with_intake(current_organization,
-                                                            given_date,
-                                                            true).sum(:amount)
-%>
-<% outgoings = Expense.given_date_for_organization_with_intake(current_organization,
-                                                               given_date,
-                                                               false).sum(:amount)
-%>
+<% intake = Expense.intake_with_date(given_date, current_organization).sum(:amount) %>
+<% outgoings = Expense.outgoings_with_date(given_date, current_organization).sum(:amount) %>
 
 <h1>
   <%= t('expense.month_overview') %>

@@ -10,7 +10,8 @@
       bindto: '#year_categories',
       data: {
         x: 'Category',
-        columns: <%= raw Expense.generate_linechart(current_organization) %>
+        url: '<%= charts_linechart_by_year_path %>',
+        mimeType: 'json',
       },
       axis: {
         x: {
@@ -32,7 +33,8 @@
       bindto: '#year_sums',
       data: {
         x: 'IntakeType',
-        columns: <%= raw Expense.generate_barchart(current_organization) %>,
+        url: '<%= charts_barchart_by_year_path %>',
+        mimeType: 'json',
         type: 'bar'
       },
       axis: {
