@@ -21,7 +21,7 @@ module LineChart
       query = ''
       query << 'SELECT category_id AS Category'
       date_list.each do |date|
-        query << ", SUM(IF(EXTRACT(YEAR_MONTH FROM purchased_on) = #{date}, amount, 0)) AS '#{Date.strptime(date.to_s, '%Y%m')}'"
+        query << ", SUM(IF(EXTRACT(YEAR_MONTH FROM purchased_on) = #{date}, amount, 0)) AS '#{Date.strptime(date, '%Y%m')}'"
       end
       query << ' FROM expenses INNER JOIN users ON users.id = expenses.user_id'
       query << " WHERE users.organization_id = #{organization_id}"
