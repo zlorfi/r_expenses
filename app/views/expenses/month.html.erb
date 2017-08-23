@@ -29,8 +29,8 @@
 
 <%= bootstrap_form_tag(url: monthly_expenses_path, method: :get) do |f| %>
   <%= f.select('date_list',
-               Expense.date_list_array,
-               {include_blank: true, label: t('expense.overview_moth_select')},
+               Expense.month_list_as_array,
+               {include_blank: true, label: t('expense.overview_month_select')},
                wrapper: { class: 'category_select'}) %>
 <% end %>
 

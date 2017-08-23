@@ -54,6 +54,13 @@
   });
 </script>
 
+<%= bootstrap_form_tag(url: annual_expenses_path, method: :get) do |f| %>
+  <%= f.select('date_list',
+               Expense.year_list_as_array,
+               {include_blank: true, label: t('expense.overview_year_select')},
+               wrapper: { class: 'category_select'}) %>
+<% end %>
+
 <h1>
   <%= t('expense.year_overview') %>
 </h1>

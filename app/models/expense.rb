@@ -24,8 +24,11 @@ class Expense < ApplicationRecord
       where(purchased_on: start_date..end_date)
     end
   }
-  scope :date_list_array, lambda {
+  scope :month_list_as_array, lambda {
     pluck(:purchased_on).map { |item_date| calculate_date_list_as_array(item_date) }.uniq.reverse
+  }
+  scope :year_list_as_array, lambda {
+    pluck(:purchased_on).map(&:year).uniq.reverse
   }
   scope :date_list, lambda {
     pluck(:purchased_on).map { |item_date| item_date.strftime('%Y%m') }.uniq

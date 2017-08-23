@@ -21,7 +21,7 @@ de:
     index: Einträge
     month_overview: Monatsauswertung
     year_overview: Jahesauswertung
-    overview_moth_select: Monatsauswahl
+    overview_month_select: Monatsauswahl
     sign_out: Ausloggen
     successfully_created: 'Eintrag erfolgreich verbucht'
     successfully_updated: 'Eintrag erfolgreich editiert'

@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require jquery
 //= require tether
+//= require popper
 //= require bootstrap
 //= require turbolinks
 //= require expenses
