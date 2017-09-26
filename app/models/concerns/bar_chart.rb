@@ -20,11 +20,11 @@ module BarChart
       query = ''
       query << 'SELECT intake AS IntakeType'
       date_list.each do |date|
-        query << ", SUM(IF(EXTRACT(YEAR_MONTH FROM purchased_on) = #{date}, amount, 0)) AS '#{Date.strptime(date, '%Y%m')}'"
+        query << ", SUM(IF(EXTRACT(YEAR_MONTH FROM purchased_on) = #{date}, amount, 0))"
+        query << " AS '#{Date.strptime(date, '%Y%m')}'"
       end
       query << ' FROM expenses INNER JOIN users ON users.id = expenses.user_id'
-      query << " WHERE users.organization_id = #{organization_id}"
-      query << ' GROUP BY intake'
+      query << " WHERE users.organization_id = #{organization_id} GROUP BY intake"
       ActiveRecord::Base.connection.exec_query(query)
     end
   end

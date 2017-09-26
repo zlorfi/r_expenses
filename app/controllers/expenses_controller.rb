@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   load_and_authorize_resource param_method: :expense_params
-  before_action :set_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_expense, only: %i[show edit update destroy]
 
   # GET /expenses
   # GET /expenses.json

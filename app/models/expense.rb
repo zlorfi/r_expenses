@@ -12,7 +12,7 @@ class Expense < ApplicationRecord
   validates :amount, numericality: true
 
   # column no longer nedded, after migrating from constant to a separate model
-  self.ignored_columns = %w(category)
+  self.ignored_columns = %w[category]
 
   scope :given_organization, ->(organization_id) { joins(:user).where('users.organization_id': organization_id) }
   scope :given_mysql_date, lambda { |date|
