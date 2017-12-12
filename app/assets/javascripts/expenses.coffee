@@ -1,4 +1,4 @@
-$(document).ready ->
+$(document).on 'turbolinks:load', ->
   if $('#expense_intake').prop('checked')
     $('.category_select').hide()
 
