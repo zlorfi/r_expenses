@@ -10,7 +10,7 @@
       bindto: '#year_categories',
       data: {
         x: 'Category',
-        url: '<%= charts_linechart_by_year_path %>',
+        url: '<%= charts_linechart_by_year_path(given_date: params[:given_date]) %>',
         mimeType: 'json',
       },
       axis: {
@@ -33,7 +33,7 @@
       bindto: '#year_sums',
       data: {
         x: 'IntakeType',
-        url: '<%= charts_barchart_by_year_path %>',
+        url: '<%= charts_barchart_by_year_path(given_date: params[:given_date]) %>',
         mimeType: 'json',
         type: 'bar'
       },

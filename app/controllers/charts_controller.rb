@@ -11,11 +11,13 @@ class ChartsController < ApplicationController
 
   # GET /charts/linechart_by_year.json
   def linechart_by_year
-    render json: Expense.generate_linechart(current_user.organization_id)
+    year_selected = params[:given_date] || Date.today.year
+    render json: Expense.generate_linechart(year_selected, current_user.organization_id)
   end
 
   # GET /charts/barchart_by_year.json
   def barchart_by_year
-    render json: Expense.generate_barchart(current_user.organization_id)
+    year_selected = params[:given_date] || Date.today.year
+    render json: Expense.generate_barchart(year_selected, current_user.organization_id)
   end
 end

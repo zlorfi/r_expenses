@@ -2,10 +2,10 @@ module LineChart
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def generate_linechart(organization_id)
+    def generate_linechart(year, organization_id)
       return nil unless Organization.exists?(id: organization_id)
       line_chart = {}
-      overview = generate_linechart_from_sql_query(organization_id)
+      overview = generate_linechart_from_sql_query(year, organization_id)
       line_chart[overview.columns.first.to_sym] = overview.columns.drop(1)
       overview.rows.each do |row|
         next if row.first.nil?
@@ -16,11 +16,11 @@ module LineChart
 
     private
 
-    def generate_linechart_from_sql_query(organization_id)
+    def generate_linechart_from_sql_query(year, organization_id)
       return nil unless Organization.exists?(id: organization_id)
       query = ''
       query << 'SELECT category_id AS Category'
-      date_list.each do |date|
+      date_list(year).each do |date|
         query << ", SUM(IF(EXTRACT(YEAR_MONTH FROM purchased_on) = #{date}, amount, 0))"
         query << " AS '#{Date.strptime(date, '%Y%m')}'"
       end

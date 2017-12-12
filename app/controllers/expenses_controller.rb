@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   load_and_authorize_resource param_method: :expense_params
-  before_action :set_expense, only: %i[show edit update destroy]
+  before_action :set_expense, only: %i(show edit update destroy)
 
   # GET /expenses
   # GET /expenses.json
@@ -73,7 +73,10 @@ class ExpensesController < ApplicationController
   end
 
   # GET /expenses/year
-  def year; end
+  def year
+    return unless params[:date_list]
+    redirect_to annual_expenses_path(given_date: params[:date_list])
+  end
 
   private
 
