@@ -21,7 +21,11 @@ module ExpensesHelper
     category.send("short_name_#{I18n.locale || 'de'}") unless category.nil?
   end
 
-  def given_date
+  def given_month
     params[:given_date] || Date.today.strftime('%Y%m')
+  end
+
+  def given_year
+    params[:given_date] || Date.today.year
   end
 end

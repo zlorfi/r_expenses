@@ -10,7 +10,7 @@
       bindto: '#year_categories',
       data: {
         x: 'Category',
-        url: '<%= charts_linechart_by_year_path(given_date: params[:given_date]) %>',
+        url: '<%= charts_linechart_by_year_path(given_date: given_year) %>',
         mimeType: 'json',
       },
       axis: {
@@ -33,7 +33,7 @@
       bindto: '#year_sums',
       data: {
         x: 'IntakeType',
-        url: '<%= charts_barchart_by_year_path(given_date: params[:given_date]) %>',
+        url: '<%= charts_barchart_by_year_path(given_date: given_year) %>',
         mimeType: 'json',
         type: 'bar'
       },
@@ -63,6 +63,9 @@
 
 <h1>
   <%= t('expense.year_overview') %>
+  <small class="text-muted">
+    <%= given_year %>
+  </small>
 </h1>
 <div id='year_categories' class='chart'><div class='loading'>Loading....</div></div>
 <div id='year_sums' class='chart'><div class='loading'>Loading....</div></div>

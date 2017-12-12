@@ -22,6 +22,7 @@ en:
     month_overview: Month overview
     year_overview: Year overview
     overview_month_select: Select month
+    overview_year_select: Select year
     sign_out: Sign out
     successfully_created: 'Expense was successfully created.'
     successfully_updated: 'Expense was successfully updated.'

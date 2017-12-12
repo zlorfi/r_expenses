@@ -12,7 +12,7 @@
       },
       bindto: '#expense_given_month',
       data: {
-        url: '<%= charts_by_month_path(given_date: given_date) %>',
+        url: '<%= charts_by_month_path(given_date: given_month) %>',
         mimeType: 'json',
         type: 'donut',
       },
@@ -36,13 +36,13 @@
 
 <hr>
 
-<% intake = Expense.intake_with_date(given_date, current_organization).sum(:amount) %>
-<% outgoings = Expense.outgoings_with_date(given_date, current_organization).sum(:amount) %>
+<% intake = Expense.intake_with_date(given_month, current_organization).sum(:amount) %>
+<% outgoings = Expense.outgoings_with_date(given_month, current_organization).sum(:amount) %>
 
 <h1>
   <%= t('expense.month_overview') %>
   <small class="text-muted">
-    <%= l(Date.strptime(given_date, '%Y%m'), format: '%B') %> <%= Date.strptime(given_date, '%Y%m').year %>
+    <%= l(Date.strptime(given_month, '%Y%m'), format: '%B') %> <%= Date.strptime(given_month, '%Y%m').year %>
   </small>
 </h1>
 <div id='expense_given_month' class='chart'><div class='loading'>Loading....</div></div>
