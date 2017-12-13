@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -36,7 +37,7 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.2'
   gem 'faker'
   gem 'pry-rails'
-  gem 'rubocop', '~> 0.47.1', require: false
+  gem 'rubocop', '~> 0.52', require: false
 end
 
 group :development do

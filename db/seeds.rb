@@ -14,7 +14,7 @@ user = User.create(username: 'Michi',
             organization: organization)
 
 %w(Wohnen Lebensmittel Hobby Genußmittel Körperpflege Anschaffung Verschiedenes).each do |category|
-  Category.create(long_name_de: category)
+  Category.create(long_name_de: category, short_name_de: category)
 end
 
 500.times do
