@@ -12,23 +12,29 @@ class Expense < ApplicationRecord
   validates :amount, numericality: true
 
   # column no longer nedded, after migrating from constant to a separate model
-  self.ignored_columns = %w(category)
+  self.ignored_columns = %w[category]
 
-  scope :given_organization, ->(organization_id) { joins(:user).where('users.organization_id': organization_id) }
+  scope :given_organization, lambda { |organization_id|
+    joins(:user).where('users.organization_id': organization_id)
+  }
   scope :given_mysql_date, lambda { |date|
     where('EXTRACT(YEAR_MONTH FROM purchased_on) = ?', date)
   }
   scope :category, ->(category) { where(category: category) }
   scope :in_between, lambda { |start_date, end_date|
-    if start_date.present? && end_date.present?
-      where(purchased_on: start_date..end_date)
-    end
+    where(purchased_on: start_date..end_date) if start_date.present? && end_date.present?
   }
   scope :month_list_as_array, lambda {
-    pluck(:purchased_on).map { |item_date| calculate_date_list_as_array(item_date) }.uniq.reverse
+    pluck(:purchased_on)
+      .map { |item_date| calculate_date_list_as_array(item_date) }
+      .uniq
+      .reverse
   }
   scope :year_list_as_array, lambda {
-    pluck(:purchased_on).map(&:year).uniq.reverse
+    pluck(:purchased_on)
+      .map(&:year)
+      .uniq
+      .reverse
   }
   scope :date_list, lambda { |year|
     where('EXTRACT(YEAR FROM purchased_on) = ?', year)
@@ -37,10 +43,14 @@ class Expense < ApplicationRecord
       .uniq
   }
   scope :intake_with_date, lambda { |date, organization_id|
-    given_mysql_date(date).given_organization(organization_id).where(intake: true)
+    given_mysql_date(date)
+      .given_organization(organization_id)
+      .where(intake: true)
   }
   scope :outgoings_with_date, lambda { |date, organization_id|
-    given_mysql_date(date).given_organization(organization_id).where(intake: false)
+    given_mysql_date(date)
+      .given_organization(organization_id)
+      .where(intake: false)
   }
 
   def self.calculate_date_list_as_array(date)
