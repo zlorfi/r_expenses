@@ -5,7 +5,7 @@ class Category < ApplicationRecord
 
   def category_name
     send("short_name_#{I18n.locale}") || send("long_name_#{I18n.locale}")
-  rescue
+  rescue StandardError
     "No name for category ##{id} set for locale: #{I18n.locale}."
   end
 end
