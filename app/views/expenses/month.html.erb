@@ -5,26 +5,26 @@
 <% end %>
 
 <script>
-  $(document).ready(function(){
-    var expense_given_month = c3.generate({
-      size: {
-        height: 400
-      },
-      bindto: '#expense_given_month',
-      data: {
-        url: '<%= charts_by_month_path(given_date: given_month) %>',
-        mimeType: 'json',
-        type: 'donut',
-      },
-      tooltip: {
-        format: {
-           value: function(value, ratio, id) {
-             return d3locale.numberFormat('$,.2f')(value);
-           }
-        }
-      }
-    });
-  });
+ $(document).ready(function(){
+   var expense_given_month = c3.generate({
+     size: {
+       height: 400
+     },
+     bindto: '#expense_given_month',
+     data: {
+       url: '<%= api_v1_charts_by_month_path(given_date: given_month) %>',
+       mimeType: 'json',
+       type: 'donut',
+     },
+     tooltip: {
+       format: {
+         value: function(value, ratio, id) {
+           return d3locale.numberFormat('$,.2f')(value);
+         }
+       }
+     }
+   });
+ });
 </script>
 
 <%= bootstrap_form_tag(url: monthly_expenses_path, method: :get) do |f| %>

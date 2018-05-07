@@ -15,10 +15,14 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :charts do
-    get :by_month
-    get :linechart_by_year
-    get :barchart_by_year
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v1 do
+      namespace :charts do
+        get :by_month
+        get :linechart_by_year
+        get :barchart_by_year
+      end
+    end
   end
 
   root 'expenses#new'

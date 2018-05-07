@@ -10,7 +10,7 @@
                wrapper: { class: 'category_select'}) %>
   <%= f.date_field :purchased_on, label: t('expense.purchased_on'), value: transform_value(expense) %>
   <%= f.submit class: 'btn btn-primary' %>
-  <% if controller_name.eql?('expenses') && action_name.eql?('edit')  %>
+  <% if controller_name.eql?('expenses') && action_name.eql?('edit') %>
     <%= link_to fa_icon('trash-o', text: t('expense.delete_expense')), expense_path(expense), method: :delete, data: { confirm: t('expense.confirm_delete') }, class: 'btn btn-danger'%>
   <% end %>
 <% end %>
