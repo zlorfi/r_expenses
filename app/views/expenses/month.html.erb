@@ -34,8 +34,6 @@
                wrapper: { class: 'category_select'}) %>
 <% end %>
 
-<hr>
-
 <% intake = Expense.intake_with_date(given_month, current_organization).sum(:amount) %>
 <% outgoings = Expense.outgoings_with_date(given_month, current_organization).sum(:amount) %>
 
