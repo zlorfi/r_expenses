@@ -1,0 +1,16 @@
+.header.clearfix
+  %nav.navbar.navbar-expand-md.navbar-light.bg-light
+    = link_to 'expenses', root_path, class: 'navbar-brand'
+    - if user_signed_in?
+      %button.navbar-toggler{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavAltMarkup", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarNavAltMarkup.collapse.navbar-collapse
+        = nav_bar do
+          = nav_link t('expense.index'), expenses_path
+          = nav_link t('expense.month_overview'), monthly_expenses_path
+          = nav_link t('expense.year_overview'), annual_expenses_path, 'd-none d-md-block'
+          %li.nav-item.dropdown
+            = link_to 'Account', '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenuLink', data: {toggle: 'dropdown'},  'aria-haspopup' => 'true', 'aria-expanded' => 'false'
+            .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
+              = link_to t('user.change_account'), edit_user_registration_path, class: 'dropdown-item'
+              = link_to t('expense.sign_out'), logout_path, class: 'dropdown-item'

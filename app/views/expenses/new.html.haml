@@ -1,0 +1,4 @@
+%h2.d-none.d-md-block= t 'expense.new_expense'
+%h3.d-md-none.d-lg-none.d-xl-none= t 'expense.new_expense'
+= render 'form', expense: @expense
+= render 'display_table', expenses: Expense.last_five(current_organization)

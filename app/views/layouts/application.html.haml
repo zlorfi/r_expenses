@@ -1,0 +1,24 @@
+!!!
+%html{:lang => "de"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "author"}
+    = render 'layouts/fav_icon'
+    %title Expenses
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = yield :charts
+  %body
+    .container
+      = render 'layouts/env' unless Rails.env.production?
+      = render 'layouts/app_header'
+      - flash.each do |type, msg|
+        = set_alert_massage(type, msg)
+      = yield
+      %footer.footer
+        %p
+          © skrynski.de #{Date.today.year}

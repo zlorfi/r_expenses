@@ -1,0 +1,6 @@
+= render 'filter_form'
+= render 'display_table', expenses: @expenses
+.d-none.d-md-block
+  = will_paginate @expenses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+.d-md-none.d-lg-none.d-xl-none
+  = will_paginate @expenses, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, page_links: false

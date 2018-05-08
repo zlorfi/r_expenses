@@ -1,0 +1,23 @@
+%h2= t('user.change_account')
+%p.d-none.d-md-block
+  %a.btn.btn-info.btn-sm{"aria-controls" => "collapseAuthToken", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseAuthToken"}
+    Show auth token
+#collapseAuthToken.collapse
+  %code= current_user.authentication_token
+
+= bootstrap_form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f|
+  = f.text_field :email, label: 'Email', autofocus: true
+  .form-group
+    = f.password_field :password, label: t('user.password'), autocomplete: 'off', class: 'form-control'
+    %small.form-text.text-muted
+      = t('user.leave_password_blank')
+      = t('user.password_length', lenght: @minimum_password_length) if @minimum_password_length
+  .form-group
+    = f.password_field :password_confirmation, label: t('user.password_confirmation'), autocomplete: 'off', class: 'form-control'
+    %small.form-text.text-muted= t('user.leave_password_blank')
+  .form-group
+    = f.password_field :current_password, label: t('user.current_password'), autocomplete: 'off', class: 'form-control'
+    %small.form-text.text-muted= t('user.password_needed')
+  .form-group
+    = f.submit  t('user.update_account'), class: 'btn btn-primary'
+= link_to t('expense.back'), expenses_path, class: 'btn btn-link'

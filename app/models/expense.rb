@@ -52,6 +52,12 @@ class Expense < ApplicationRecord
       .given_organization(organization_id)
       .where(intake: false)
   }
+  scope :last_five, lambda { |organization|
+    given_organization(organization)
+      .order(id: :asc)
+      .reverse_order
+      .limit(5)
+  }
 
   def self.calculate_date_list_as_array(date)
     ["#{I18n.l(date, format: '%B')} #{date.year}", date.strftime('%Y%m')]

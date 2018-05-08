@@ -1,0 +1,33 @@
+%br/
+%table.table
+  %thead.thead-default
+    %tr
+      %th= t('expense.purchased_on')
+      %th= t('expense.title')
+      %th= t('expense.amount')
+      %th.custom_row= t('expense.category')
+      %th.custom_row
+  %tbody
+    - expenses.each do |expense|
+      %tr
+        %th{:scope => "row"}
+          .d-md-none.d-lg-none.d-xl-none
+            = l(expense.purchased_on, format: :short)
+          .d-none.d-md-block
+            = l(expense.purchased_on)
+        %td
+          .d-md-none.d-lg-none.d-xl-none
+            = link_to expense.title, edit_expense_path(expense)
+          .d-none.d-md-block
+            = expense.title
+        %td= mark_amount(expense)
+        %td.custom_row= category_long_name(expense.category)
+        %td.custom_row
+          = link_to fa_icon('pencil'),
+            edit_expense_path(expense),
+            class: 'btn btn-primary btn-sm'
+          = link_to fa_icon('trash-o'),
+            expense_path(expense),
+            method: :delete,
+            data: { confirm: t('expense.confirm_delete') },
+            class: 'btn btn-danger btn-sm'
