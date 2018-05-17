@@ -10,6 +10,10 @@ module Devise
         success! User.find_by_id claims['user_id']
       end
 
+      def store?
+        false
+      end
+
       protected
 
       def bearer_header

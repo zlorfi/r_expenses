@@ -13,7 +13,7 @@ module JWTWrapper
   def decode(token)
     decoded_token = JWT.decode(token, Rails.application.secrets.jwt_secret)
     decoded_token.first
-  rescue JWT::DecodeError
+  rescue JWT::DecodeError, JWT::ExpiredSignature
     nil
   end
 end
