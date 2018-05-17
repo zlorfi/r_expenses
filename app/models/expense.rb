@@ -59,6 +59,14 @@ class Expense < ApplicationRecord
       .limit(5)
   }
 
+  scope :by_month, lambda { |month, organization_id|
+    outgoings_with_date(month, organization_id)
+      .group(:category_id)
+      .group_by_month(:purchased_on, format: '%Y-%m-%d')
+      .sum(:amount)
+      .map { |k, v| [Category.find(k.first).long_name_de, v] }.to_h
+  }
+
   def self.calculate_date_list_as_array(date)
     ["#{I18n.l(date, format: '%B')} #{date.year}", date.strftime('%Y%m')]
   end

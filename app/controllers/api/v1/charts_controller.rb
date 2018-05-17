@@ -4,11 +4,7 @@ module Api
       # GET /api/v1/charts/by_month.json
       def by_month
         date_selected = params[:given_date] || Date.today.strftime('%Y%m')
-        render json: Expense.outgoings_with_date(date_selected, current_user.organization_id)
-                            .group(:category_id)
-                            .group_by_month(:purchased_on, format: '%Y-%m-%d')
-                            .sum(:amount)
-                            .map { |k, v| [Category.find(k.first).long_name_de, v] }.to_h
+        render json: Expense.by_month(date_selected, current_user.organization_id)
       end
 
       # GET /api/v1/charts/linechart_by_year.json
