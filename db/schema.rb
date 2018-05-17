@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 20170508110033) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
-    t.string "authentication_token"
     t.integer "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["organization_id"], name: "index_users_on_organization_id"

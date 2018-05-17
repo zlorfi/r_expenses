@@ -3,7 +3,7 @@
   %a.btn.btn-info.btn-sm{"aria-controls" => "collapseAuthToken", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseAuthToken"}
     Show auth token
 #collapseAuthToken.collapse
-  %code= current_user.authentication_token
+  %code= JWTWrapper.encode({ user_id: current_user.id })
 
 = bootstrap_form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f|
   = f.text_field :email, label: 'Email', autofocus: true
