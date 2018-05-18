@@ -42,6 +42,7 @@ de:
     apply_filter: Filter anwenden
     clear_filter: Filter löschen
     difference: Differenz
+    record_not_found: Eintrag nicht gefunden
   user:
     change_account: Account anpassen
     leave_password_blank: Feld frei lassen, wenn das Passwort nicht verändert werden soll
