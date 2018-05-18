@@ -1,6 +1,8 @@
 module ExceptionHandler
   extend ActiveSupport::Concern
 
+  class InvalidToken < StandardError; end
+
   included do
     rescue_from ActiveRecord::RecordNotFound do |e|
       respond_to do |format|
@@ -12,6 +14,12 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordInvalid do |e|
       respond_to do |format|
         format.json { render json: { message: e.message }, status: :unprocessable_entity }
+      end
+    end
+
+    rescue_from ExceptionHandler::InvalidToken do
+      respond_to do |format|
+        format.json { render json: { message: 'Invalid token' }, status: :unprocessable_entity }
       end
     end
   end
