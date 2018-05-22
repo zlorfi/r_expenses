@@ -1,10 +1,8 @@
 - content_for :charts do
-  = javascript_include_tag 'charts/d3', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'charts/c3', 'data-turbolinks-track': 'reload'
-  = javascript_include_tag 'charts/c3_config_de', 'data-turbolinks-track': 'reload'
+  = javascript_include_tag 'charts', 'data-turbolinks-track': 'reload'
 :javascript
-  $(document).ready(function(){
-    var expense_given_month = c3.generate({
+  document.addEventListener('turbolinks:load', function() {
+    c3.generate({
       size: {
         height: 400
       },
@@ -21,7 +19,7 @@
           }
         }
       }
-    });
+    })
   });
 = bootstrap_form_tag(url: monthly_expenses_path, method: :get) do |f|
   = f.select('date_list',

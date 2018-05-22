@@ -1,9 +1,7 @@
-%h2= t('user.change_account')
-%p.d-none.d-md-block
-  %a.btn.btn-info.btn-sm{"aria-controls" => "collapseAuthToken", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseAuthToken"}
-    Show auth token
-#collapseAuthToken.collapse
+.shadow.p-3.mb-5.bg-white.rounded
   %code= JWTWrapper.encode({ user_id: current_user.id })
+
+%h2= t('user.change_account')
 
 = bootstrap_form_for(resource, as: resource_name, url: user_registration_path, html: { method: :patch }) do |f|
   = f.text_field :email, label: 'Email', autofocus: true
