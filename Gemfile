@@ -10,7 +10,6 @@ end
 gem 'bootstrap', '~> 4.1.1'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'master'
 gem 'cancancan', '~> 2.0.0'
-gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.4.0'
 gem 'font-awesome-rails', '~> 4.7.0'
 gem 'groupdate', '~> 3.2.0'
@@ -26,11 +25,6 @@ gem 'sassc-rails', '~> 1.3.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate-bootstrap4'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery', '>= 3.2.1'
-  gem 'rails-assets-tether', '>= 1.3.3'
-end
 
 group :development, :test do
   gem 'better_errors', '~> 2.1.1'

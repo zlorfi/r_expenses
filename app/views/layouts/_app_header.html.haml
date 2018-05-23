@@ -9,5 +9,8 @@
           = nav_link t('expense.index'), expenses_path
           = nav_link t('expense.month_overview'), monthly_expenses_path
           = nav_link t('expense.year_overview'), annual_expenses_path, 'd-none d-md-block'
-          = nav_link t('user.change_account'), edit_user_registration_path
-          = nav_link t('expense.sign_out'), logout_path
+          %li.nav-item.dropdown
+            = link_to 'Account', '#', class: 'nav-link dropdown-toggle', id: 'navbarDropdownMenuLink', data: {toggle: 'dropdown'},  'aria-haspopup' => 'true', 'aria-expanded' => 'false'
+            .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
+              = link_to t('user.change_account'), edit_user_registration_path, class: 'dropdown-item'
+              = link_to t('expense.sign_out'), logout_path, class: 'dropdown-item'
