@@ -96,8 +96,6 @@ GEM
     faker (1.7.3)
       i18n (~> 0.5)
     ffi (1.9.23)
-    font-awesome-rails (4.7.0.2)
-      railties (>= 3.2, < 5.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     groupdate (3.2.0)
@@ -248,7 +246,6 @@ DEPENDENCIES
   capistrano-rails (~> 1.2)
   devise (~> 4.4.0)
   faker
-  font-awesome-rails (~> 4.7.0)
   groupdate (~> 3.2.0)
   haml (~> 5.0.4)
   jbuilder (~> 2.5)
