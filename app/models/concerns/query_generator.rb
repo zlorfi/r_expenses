@@ -3,7 +3,6 @@ module QueryGenerator
 
   module ClassMethods
     def chart_from_sql_query(year, organization_id, field, sql_alias)
-      return nil unless Organization.exists?(id: organization_id)
       query = ''
       query << "SELECT #{field} AS #{sql_alias}"
       date_list(year).each do |date|

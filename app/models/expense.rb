@@ -37,10 +37,10 @@ class Expense < ApplicationRecord
       .reverse
   }
   scope :date_list, lambda { |year|
-    where('EXTRACT(YEAR FROM purchased_on) = ?', year)
-      .pluck(:purchased_on)
-      .map { |item_date| item_date.strftime('%Y%m') }
-      .uniq
+    select("DATE_FORMAT(purchased_on, '%Y%m') AS formated_date")
+      .distinct
+      .where('EXTRACT(YEAR FROM purchased_on) = ?', year)
+      .map(&:formated_date)
   }
   scope :intake_with_date, lambda { |date, organization_id|
     given_mysql_date(date)
@@ -64,7 +64,7 @@ class Expense < ApplicationRecord
       .group(:category_id)
       .group_by_month(:purchased_on, format: '%Y-%m-%d')
       .sum(:amount)
-      .map { |k, v| [Category.find(k.first).long_name_de, v] }.to_h
+      .map { |category, sum| [Category.find(category.first).long_name_de, sum.to_f] }.to_h
   }
 
   def self.calculate_date_list_as_array(date)
