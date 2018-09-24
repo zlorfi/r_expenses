@@ -6,7 +6,7 @@ module LineChart
     def generate_linechart(year, organization_id)
       return nil unless Organization.exists?(id: organization_id)
       chart = {}
-      overview = chart_from_sql_query(year, organization_id, 'category_id', 'Months')
+      overview = chart_from_sql_query(year, organization_id, 'category_id', 'Months_Line')
       chart[overview.columns.first.to_sym] = overview.columns.drop(1)
       overview.rows.each do |row|
         next if row.first.nil?

@@ -5,7 +5,7 @@
     var year_categories = c3.generate({
       bindto: '#year_categories',
       data: {
-        x: 'Months',
+        x: 'Months_Line',
         url: '#{api_v1_charts_linechart_by_year_path(given_date: given_year)}',
         mimeType: 'json',
       },
@@ -28,7 +28,7 @@
     var year_sums = c3.generate({
       bindto: '#year_sums',
       data: {
-        x: 'Months',
+        x: 'Months_Bar',
         url: '#{api_v1_charts_barchart_by_year_path(given_date: given_year)}',
         mimeType: 'json',
         type: 'bar'
