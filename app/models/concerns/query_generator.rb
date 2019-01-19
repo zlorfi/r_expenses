@@ -6,7 +6,7 @@ module QueryGenerator
       query = ''
       query << "SELECT #{field} AS #{sql_alias}"
       date_list(year).each do |date|
-        query << ", SUM(IF(EXTRACT(YEAR_MONTH FROM purchased_on) = #{date}, amount, 0))"
+        query << ", SUM(CASE WHEN TO_CHAR(purchased_on, 'YYYYMM') = #{date} THEN amount ELSE 0 END)"
         query << " AS '#{Date.strptime(date, '%Y%m')}'"
       end
       query << ' FROM expenses INNER JOIN users ON users.id = expenses.user_id'

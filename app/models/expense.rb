@@ -18,7 +18,7 @@ class Expense < ApplicationRecord
     joins(:user).where('users.organization_id': organization_id)
   }
   scope :given_mysql_date, lambda { |date|
-    where('EXTRACT(YEAR_MONTH FROM purchased_on) = ?', date)
+    where("TO_CHAR(purchased_on, 'YYYYMM') = ?", date)
   }
   scope :category, ->(category) { where(category: category) }
   scope :in_between, lambda { |start_date, end_date|
@@ -37,7 +37,7 @@ class Expense < ApplicationRecord
       .reverse
   }
   scope :date_list, lambda { |year|
-    select("DATE_FORMAT(purchased_on, '%Y%m') AS formated_date")
+    select("TO_CHAR(purchased_on, 'YYYYMM') AS formated_date")
       .distinct
       .where('EXTRACT(YEAR FROM purchased_on) = ?', year)
       .map(&:formated_date)

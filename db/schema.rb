@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170508110033) do
 
-  create_table "categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "categories", id: :serial, force: :cascade do |t|
     t.string "short_name_de"
     t.string "long_name_de"
     t.string "short_name_en"
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170508110033) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "expenses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "expenses", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "category"
     t.decimal "amount", precision: 16, scale: 2
@@ -36,11 +39,11 @@ ActiveRecord::Schema.define(version: 20170508110033) do
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
-  create_table "organizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "organizations", id: :serial, force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
