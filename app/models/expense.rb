@@ -17,7 +17,7 @@ class Expense < ApplicationRecord
   scope :given_organization, lambda { |organization_id|
     joins(:user).where('users.organization_id': organization_id)
   }
-  scope :given_mysql_date, lambda { |date|
+  scope :given_sql_date, lambda { |date|
     where("TO_CHAR(purchased_on, 'YYYYMM') = ?", date)
   }
   scope :category, ->(category) { where(category: category) }
@@ -43,12 +43,12 @@ class Expense < ApplicationRecord
       .map(&:formated_date)
   }
   scope :intake_with_date, lambda { |date, organization_id|
-    given_mysql_date(date)
+    given_sql_date(date)
       .given_organization(organization_id)
       .where(intake: true)
   }
   scope :outgoings_with_date, lambda { |date, organization_id|
-    given_mysql_date(date)
+    given_sql_date(date)
       .given_organization(organization_id)
       .where(intake: false)
   }
