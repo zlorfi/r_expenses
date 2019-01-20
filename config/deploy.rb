@@ -13,6 +13,9 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
 
+# restart the old way
+set :passenger_restart_with_touch, true
+
 namespace :deploy do
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
