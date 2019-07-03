@@ -7,10 +7,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'master'
 gem 'cancancan', '~> 2.0.0'
-gem 'devise', '~> 4.4.0'
+gem 'devise', '~> 4.6.0'
 gem 'groupdate', '~> 3.2.0'
 gem 'haml', '~> 5.0.4'
 gem 'jbuilder', '~> 2.5'
@@ -21,7 +21,7 @@ gem 'pg', '~> 1.1.4'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.6'
 # gem 'sass-rails', '~> 5.0'
-gem 'sassc-rails', '~> 1.3.0'
+gem 'sassc-rails', '~> 2.1.2'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate-bootstrap4'
