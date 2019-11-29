@@ -3,7 +3,7 @@
 Personal household book for keeping track of curent expenses.
 
 ## Ruby version
-`2.3.3`
+`2.6.3`
 
 ## Configuration
 * set an initial user via `rake db:seed`
