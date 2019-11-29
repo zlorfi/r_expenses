@@ -21,7 +21,7 @@ class Expense < ApplicationRecord
     where("TO_CHAR(purchased_on, 'YYYYMM') = ?", date)
   }
   scope :category, ->(category) { where(category: category) }
-  scope :in_between, lambda { |start_date, end_date|
+  scope :in_between_dates, lambda { |start_date, end_date|
     where(purchased_on: start_date..end_date) if start_date.present? && end_date.present?
   }
   scope :month_list_as_array, lambda {

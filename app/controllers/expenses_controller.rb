@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   load_and_authorize_resource param_method: :expense_params
-  before_action :set_expense, only: %i(show edit update destroy)
+  before_action :set_expense, only: %i[show edit update destroy]
 
   # GET /expenses
   # GET /expenses.json
@@ -8,8 +8,8 @@ class ExpensesController < ApplicationController
     @expenses = Expense.includes(:category)
                        .given_organization(current_user.organization_id)
                        .paginate(page: params[:page], per_page: (params[:per_page] || 15))
-                       .filter(params.slice(:category))
-                       .in_between(params[:start_date], params[:end_date])
+                       .filter_from_params(params.slice(:category))
+                       .in_between_dates(params[:start_date], params[:end_date])
                        .order(:purchased_on, :id)
                        .reverse_order
   end
