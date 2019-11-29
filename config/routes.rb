@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get 'login', to: 'devise/sessions#new'
-    get 'logout', to: 'devise/sessions#destroy'
+    get 'login', to: 'users/sessions#new'
+    get 'logout', to: 'users/sessions#destroy'
     get 'users/edit', to: 'devise/registrations#edit', as: 'edit_user_registration'
     patch 'users', to: 'devise/registrations#update', as: 'user_registration'
   end
