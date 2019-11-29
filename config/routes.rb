@@ -24,6 +24,11 @@ Rails.application.routes.draw do
         get :linechart_by_year
         get :barchart_by_year
       end
+      resources :expenses do
+        collection do
+          get :last_five
+        end
+      end
     end
   end
 

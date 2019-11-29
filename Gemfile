@@ -7,6 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'active_model_serializers'
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'master'
 gem 'cancancan', '~> 2.0.0'
@@ -15,7 +16,6 @@ gem 'groupdate', '~> 3.2.0'
 gem 'haml', '~> 5.0.4'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt', '~> 2.1.0'
-# gem 'mysql2', '~> 0.4.5'
 gem 'nokogiri', '~> 1.10.4'
 gem 'pg', '~> 1.1.4'
 gem 'puma', '~> 3.7'
