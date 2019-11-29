@@ -2,7 +2,12 @@ module QueryGenerator
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def chart_from_sql_query(year, organization_id, field, sql_alias)
+    def chart_from_sql_query(
+      year:,
+      organization_id:,
+      field:,
+      sql_alias:
+    )
       query = ''
       query << "SELECT #{field} AS #{sql_alias}"
       date_list(year).sort.each do |date|
