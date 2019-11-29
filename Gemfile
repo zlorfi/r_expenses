@@ -10,7 +10,7 @@ end
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'master'
 gem 'cancancan', '~> 2.0.0'
-gem 'devise', '~> 4.6.0'
+gem 'devise', '~> 4.7.1'
 gem 'groupdate', '~> 3.2.0'
 gem 'haml', '~> 5.0.4'
 gem 'jbuilder', '~> 2.5'
