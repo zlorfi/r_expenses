@@ -3,9 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 /* Space out content a bit */
 
-// use breakpoints, see: http://saddamazad.com/2015/12/bootstrap-4-media-queries-using-sass/
-$breakpoints: $grid-breakpoints;
-
 body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -38,7 +35,7 @@ body {
 }
 
 /* Responsive: Portrait tablets and up */
-@include media(">sm") {
+@media (min-width: 768px) {
   .container {
     max-width: 56rem;
   }
@@ -53,7 +50,7 @@ body {
   }
 }
 
-@include media("<md") {
+@media (max-width: 767.98px) {
   .custom_row {
     display: none;
   }

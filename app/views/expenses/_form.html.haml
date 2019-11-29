@@ -5,7 +5,7 @@
     = f.check_box :intake, label: t('expense.intake_checkbox')
   = f.select('category_id',
     Category.all.collect {|c| [ category_long_name(c), c.id ] },
-    {include_blank: true, label: t('expense.category')},
+    include_blank: true, label: t('expense.category'),
     wrapper: { class: 'category_select'})
   = f.date_field :purchased_on, label: t('expense.purchased_on'), value: transform_value(expense)
   = f.submit class: 'btn btn-primary'
