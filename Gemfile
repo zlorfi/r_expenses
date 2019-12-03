@@ -19,6 +19,7 @@ gem 'jwt', '~> 2.1.0'
 gem 'nokogiri', '~> 1.10.4'
 gem 'pg', '~> 1.1.4'
 gem 'puma', '~> 3.7'
+gem 'react_on_rails', '=11.3.0' # this has to match package.json
 gem 'rails', '~> 5.1.6'
 # gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails', '~> 2.1.2'

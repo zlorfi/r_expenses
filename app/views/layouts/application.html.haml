@@ -19,6 +19,4 @@
       - flash.each do |type, msg|
         = set_alert_massage(type, msg)
       = yield
-      %footer.footer
-        %p
-          © skrynski.de #{Date.today.year}
+      = react_component('Footer')

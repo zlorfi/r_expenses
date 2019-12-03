@@ -1,9 +1,7 @@
 import * as d3 from 'd3';
-import c3 from 'c3';
-// var c3 = require('c3/c3.js');
+// import c3 from 'c3';
+var c3 = require('c3');
 // import '../src/c3.js';
-
-// var c3 = require('c3');
 
 d3.timeFormatDefaultLocale({
   'decimal': ',',
@@ -19,3 +17,26 @@ d3.timeFormatDefaultLocale({
   'months': ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
   'shortMonths': ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez']
 });
+
+function generate_donut_chart(data_url) {
+  document.addEventListener('turbolinks:load', function() {
+    c3.generate({
+      size: {
+        height: 400
+      },
+      bindto: '#expense_given_month',
+      data: {
+        url: data_url,
+        mimeType: 'json',
+        type: 'donut',
+      },
+      tooltip: {
+        format: {
+          value: function(value, ratio, id) {
+            return d3locale.numberFormat('$,.2f')(value);
+          }
+        }
+      }
+    });
+  });
+}
