@@ -1,5 +1,5 @@
 - content_for :charts do
-  = javascript_include_tag 'charts', 'data-turbolinks-track': 'reload'
+  = javascript_pack_tag 'charts', 'data-turbolinks-track': 'reload'
 :javascript
   document.addEventListener('turbolinks:load', function() {
     var year_categories = c3.generate({

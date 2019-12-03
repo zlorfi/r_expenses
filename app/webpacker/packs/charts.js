@@ -1,6 +1,11 @@
-var d3locale;
+import * as d3 from 'd3';
+import c3 from 'c3';
+// var c3 = require('c3/c3.js');
+// import '../src/c3.js';
 
-d3locale = d3.locale({
+// var c3 = require('c3');
+
+d3.timeFormatDefaultLocale({
   'decimal': ',',
   'thousands': '.',
   'grouping': [3],

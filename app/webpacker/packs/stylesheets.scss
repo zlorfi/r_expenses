@@ -1,9 +1,13 @@
-@font-face {
+@import '~bootstrap/scss/bootstrap';
+@import "../src/stylesheets/expenses";
+@import "../src/stylesheets/c3";
+
+ @font-face {
   font-family: 'custom_fa';
   src:
-    url('<%= font_path('custom_fa.woff') %>') format('woff'),
-    url('<%= font_path('custom_fa.ttf') %>') format('truetype'),
-    url('<%= font_path('custom_fa.svg') %>#custom_fa') format('svg');
+    url('../fonts/custom_fa.woff') format('woff'),
+    url('../fonts/custom_fa.ttf') format('truetype'),
+    url('../fonts/custom_fa.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
