@@ -24,6 +24,11 @@ module Api
                             .reverse_order,
                each_serializer: Api::V1::ExpenseSerializer
       end
+
+      # GET /api/v1/expenses/in_out.json
+      def in_out
+        render json: Api::V1::Expenses.calculate_in_out(given_month, current_organization)
+      end
     end
   end
 end

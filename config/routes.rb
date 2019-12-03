@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :expenses do
         collection do
           get :last_five
+          get :in_out
         end
       end
     end
