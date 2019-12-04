@@ -5,13 +5,16 @@ import PropTypes from 'prop-types';
 
 const Bar = props => (
   document.addEventListener('turbolinks:load', function() {
-    var bar = c3.generate({
+    c3.generate({
       bindto: '#year_sums',
       data: {
         x: 'months_bar',
         url: props.dataUrl,
         mimeType: 'json',
         type: 'bar'
+      },
+      color: {
+        pattern: ['#D46A6A', '#A5C663']
       },
       axis: {
         x: {
@@ -28,7 +31,7 @@ const Bar = props => (
       }
     })
 
-    return bar;
+  //   return bar;
   })
 );
 

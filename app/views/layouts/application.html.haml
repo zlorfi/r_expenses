@@ -9,8 +9,8 @@
     =# render 'layouts/fav_icon'
     %title Expenses
     = csrf_meta_tags
-    = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
   %body
     .container
       = render 'layouts/env' unless Rails.env.production?

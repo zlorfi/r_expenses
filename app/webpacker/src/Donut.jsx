@@ -1,10 +1,18 @@
+import React from 'react';
 import '../shared/charts.js'
 import * as d3 from 'd3';
 import c3 from 'c3';
 import PropTypes from 'prop-types';
 
-const Donut = props => (
-  document.addEventListener('turbolinks:load', function() {
+class Donut extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {}
+    }
+  }
+
+  componentDidMount() {
     var donut = c3.generate({
       size: {
         height: 400
@@ -23,10 +31,18 @@ const Donut = props => (
         }
       }
     })
+  }
 
-    return donut;
-  })
-);
+  render() {
+    return(
+      <div id="expense_given_month">
+        <div className="chart">
+          <div className="loading">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+}
 
 Donut.propTypes = {
   dataUrl: PropTypes.string
