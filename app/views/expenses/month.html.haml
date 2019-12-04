@@ -13,6 +13,7 @@
     = l(Date.strptime(given_month, '%Y%m'), format: '%B')
     = Date.strptime(given_month, '%Y%m').year
 
-= react_component('Donut', props: { donutDataUrl: api_v1_charts_by_month_path(given_date: given_month) })
+=# react_component("Overview")
+-# = react_component('Donut', props: { donutDataUrl: api_v1_charts_by_month_path(given_date: given_month) })
 
-= react_component('Overview', props: { overviewDataUrl: in_out_api_v1_expenses_path(given_date: given_month) })
+-# = react_component('Overview', props: { overviewDataUrl: in_out_api_v1_expenses_path(given_date: given_month) })

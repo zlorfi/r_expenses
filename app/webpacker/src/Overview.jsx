@@ -11,7 +11,7 @@ class Overview extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     axios.get(props.overviewDataUrl)
       .then(res => {
         const data = res.data;
