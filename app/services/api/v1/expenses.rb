@@ -9,7 +9,8 @@ module Api
           {
             intake: number_to_eur(intake),
             outgoings: number_to_eur(outgoings),
-            difference: number_to_eur(difference)
+            difference: number_to_eur(difference),
+            negative: difference.negative? ? true : false
           }
         end
 

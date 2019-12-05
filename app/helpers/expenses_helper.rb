@@ -6,13 +6,6 @@ module ExpensesHelper
     end
   end
 
-  def color_value(expense)
-    intake = expense.negative? ? 'text-danger' : 'text-success'
-    content_tag(:small, class: intake) do
-      number_to_currency(expense)
-    end
-  end
-
   def category_long_name(category)
     category.send("long_name_#{I18n.locale || 'de'}") unless category.nil?
   end

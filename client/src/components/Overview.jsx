@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
-import { clientGet } from '../client';
-// import axios from 'axios';
+import { clientGet } from 'client';
 
 class Overview extends Component {
   constructor(props) {
@@ -22,36 +21,31 @@ class Overview extends Component {
       .catch(errorMessage => {
         this.setState({errorMessage: errorMessage})
       })
-      // axios.get(props.overviewDataUrl)
-      // .then(res => {
-      //   const data = res.data;
-      //   this.setState({ data });
-      // })
   }
 
   render() {
     return (
       <Row className="intake">
         <Col md>
-          <h3>Einnahmen:
+          <h4>Einnahmen:&nbsp;
             <small className="text-muted">
               { this.state.data.intake }
             </small>
-          </h3>
+          </h4>
         </Col>
         <Col md>
-          <h3>Ausgaben:
+          <h4>Ausgaben:&nbsp;
             <small className="text-muted">
               { this.state.data.outgoings }
             </small>
-          </h3>
+          </h4>
         </Col>
         <Col md>
-          <h3>Differenz:
-            <small className="text-muted">
+          <h4>Differenz:&nbsp;
+            <small className={(this.state.data.negative ? 'text-danger' : 'text-success')}>
               { this.state.data.difference }
             </small>
-          </h3>
+          </h4>
         </Col>
       </Row>
     )
