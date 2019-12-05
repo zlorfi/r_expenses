@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'active_model_serializers'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms', branch: 'master'
 gem 'cancancan', '~> 2.0.0'
@@ -16,16 +17,17 @@ gem 'groupdate', '~> 3.2.0'
 gem 'haml', '~> 5.0.4'
 gem 'jbuilder', '~> 2.5'
 gem 'jwt', '~> 2.1.0'
+gem 'mini_racer', platforms: :ruby
 gem 'nokogiri', '~> 1.10.4'
 gem 'pg', '~> 1.1.4'
 gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.2.4'
 gem 'react_on_rails', '=11.3.0' # this has to match package.json
-gem 'rails', '~> 5.1.6'
-# gem 'sass-rails', '~> 5.0'
-gem 'sassc-rails', '~> 2.1.2'
+gem 'sass-rails', '~> 5.0'
+# gem 'sassc-rails', '~> 2.1.2'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 4.2.0'
 gem 'will_paginate-bootstrap4'
 
 group :development, :test do
@@ -42,5 +44,3 @@ end
 group :development do
   gem 'listen', '~> 3.0.5'
 end
-
-# gem 'mini_racer', platforms: :ruby

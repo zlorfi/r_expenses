@@ -7,11 +7,5 @@
   = t('expense.year_overview')
   %small.text-muted
     = given_year
-.h1
-  =# react_component('Line', props: { dataUrl: api_v1_charts_linechart_by_year_path(given_date: given_year) })
-  #year_categories.chart
-    .loading Loading....
-.h1
-  = react_component('Bar', props: { dataUrl: api_v1_charts_barchart_by_year_path(given_date: given_year) })
-  #year_sums.chart
-    .loading Loading....
+= react_component('Line', props: { lineDataUrl: api_v1_charts_linechart_by_year_path(given_date: given_year) })
+= react_component('Bar', props: { barDataUrl: api_v1_charts_barchart_by_year_path(given_date: given_year) })

@@ -1,15 +1,20 @@
+import React, { Component } from 'react';
+import 'shared/charts'
 import * as d3 from 'd3';
 import c3 from 'c3';
 import PropTypes from 'prop-types';
-import '../shared/charts.js'
 
-const Line = props => (
-  document.addEventListener('turbolinks:load', function() {
+class Line extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
     c3.generate({
       bindto: '#year_categories',
       data: {
         x: 'months_line',
-        url: props.lineDataUrl,
+        url: this.props.lineDataUrl,
         mimeType: 'json',
       },
       point: {
@@ -33,8 +38,18 @@ const Line = props => (
         }
       }
     })
-  })
-);
+  }
+
+  render() {
+    return(
+      <div id="year_categories">
+        <div className="chart">
+          <div className="loading">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+}
 
 Line.propTypes = {
   lineDataUrl: PropTypes.string

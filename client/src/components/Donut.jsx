@@ -1,25 +1,22 @@
-import React from 'react';
-import '../shared/charts.js'
+import React, { Component } from 'react';
+import 'shared/charts'
 import * as d3 from 'd3';
 import c3 from 'c3';
 import PropTypes from 'prop-types';
 
-class Donut extends React.Component {
+class Donut extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data: {}
-    }
   }
 
   componentDidMount() {
-    var donut = c3.generate({
+    c3.generate({
       size: {
         height: 400
       },
       bindto: '#expense_given_month',
       data: {
-        url: props.dataUrl,
+        url: this.props.donutDataUrl,
         mimeType: 'json',
         type: 'donut',
       },
@@ -45,7 +42,7 @@ class Donut extends React.Component {
 }
 
 Donut.propTypes = {
-  dataUrl: PropTypes.string
+  donutDataUrl: PropTypes.string
 };
 
 export default Donut;

@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
-import axios from 'axios';
+import { clientGet } from '../client';
+// import axios from 'axios';
 
-class Overview extends React.Component {
+class Overview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {}
+      data: [],
+      errorMessage: ''
     };
   }
 
   async componentDidMount() {
-    axios.get(props.overviewDataUrl)
-      .then(res => {
-        const data = res.data;
-        this.setState({ data });
+    const url = this.props.overviewDataUrl
+    clientGet(url)
+      .then(response => {
+        this.setState({ data: response.data });
       })
+      .catch(errorMessage => {
+        this.setState({errorMessage: errorMessage})
+      })
+      // axios.get(props.overviewDataUrl)
+      // .then(res => {
+      //   const data = res.data;
+      //   this.setState({ data });
+      // })
   }
 
   render() {
@@ -51,5 +61,11 @@ class Overview extends React.Component {
 Overview.propTypes = {
   overviewDataUrl: PropTypes.string
 };
+
+Overview.defaultProps = {
+  overviewDataUrl: ''
+};
+
+// export default props => <Overview {...props} />;
 
 export default Overview;

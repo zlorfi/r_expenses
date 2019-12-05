@@ -1,15 +1,20 @@
-import '../shared/charts.js'
+import React, { Component } from 'react';
+import 'shared/charts.js'
 import * as d3 from 'd3';
 import c3 from 'c3';
 import PropTypes from 'prop-types';
 
-const Bar = props => (
-  document.addEventListener('turbolinks:load', function() {
+class Bar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
     c3.generate({
       bindto: '#year_sums',
       data: {
         x: 'months_bar',
-        url: props.dataUrl,
+        url: this.props.barDataUrl,
         mimeType: 'json',
         type: 'bar'
       },
@@ -30,13 +35,21 @@ const Bar = props => (
         }
       }
     })
+  }
 
-  //   return bar;
-  })
-);
+  render() {
+    return(
+      <div id="year_sums">
+        <div className="chart">
+          <div className="loading">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+}
 
 Bar.propTypes = {
-  dataUrl: PropTypes.string
+  barDataUrl: PropTypes.string
 };
 
 export default Bar;

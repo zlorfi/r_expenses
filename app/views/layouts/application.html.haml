@@ -6,11 +6,12 @@
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
-    =# render 'layouts/fav_icon'
-    %title Expenses
     = csrf_meta_tags
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = stylesheet_pack_tag 'stylesheets', media: 'all', 'data-turbolinks-track': 'reload'
+    = csp_meta_tag
+    = render 'layouts/fav_icon'
+    %title Expenses
+    = stylesheet_pack_tag('stylesheets', media: 'all', 'data-turbolinks-track': 'reload')
+    = javascript_pack_tag('application', defer: true, 'data-turbolinks-track': 'reload')
   %body
     .container
       = render 'layouts/env' unless Rails.env.production?
