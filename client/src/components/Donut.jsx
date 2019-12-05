@@ -9,7 +9,7 @@ class Donut extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     c3.generate({
       size: {
         height: 400

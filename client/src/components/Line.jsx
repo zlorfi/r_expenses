@@ -9,7 +9,7 @@ class Line extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     c3.generate({
       bindto: '#year_categories',
       data: {

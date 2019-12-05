@@ -9,7 +9,7 @@ class Bar extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     c3.generate({
       bindto: '#year_sums',
       data: {
@@ -19,7 +19,7 @@ class Bar extends Component {
         type: 'bar'
       },
       color: {
-        pattern: ['#D46A6A', '#A5C663']
+        pattern: ['#dc3545', '#28a745']
       },
       axis: {
         x: {
