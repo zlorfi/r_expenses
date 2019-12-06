@@ -8,6 +8,9 @@ const getHeaders = () => ({
   }
 })
 
+const csrfToken = document.querySelector('[name=csrf-token]').content
+axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
 // HTTP GET Request - Returns Resolved or Rejected Promise
 export const clientGet = (path) => {
   return new Promise((resolve, reject) => {

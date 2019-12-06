@@ -14,6 +14,17 @@ module Api
           }
         end
 
+        def calculate_years_difference
+          query = ''
+          query << 'SELECT EXTRACT(YEAR FROM purchased_on)::integer AS year'
+          query << ' , SUM(CASE WHEN intake = true THEN amount WHEN intake = false THEN - amount ELSE 0 END)'
+          query << ' FROM expenses GROUP BY year ORDER BY year'
+          result = ActiveRecord::Base.connection.exec_query(query)
+          {
+            data: result.rows
+          }
+        end
+
         private
 
         def number_to_eur(number)

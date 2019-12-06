@@ -4,6 +4,9 @@
 # for many more options.
 
 ReactOnRails.configure do |config|
+  # i18n, see https://shakacode.gitbooks.io/react_on_rails/content/docs/basics/i18n.html
+  config.i18n_dir = Rails.root.join('client', 'locales')
+
   # This configures the script to run to build the production assets by webpack. Set this to nil
   # if you don't want react_on_rails building this file for you.
   config.build_production_command = 'RAILS_ENV=production NODE_ENV=production bin/webpack'

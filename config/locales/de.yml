@@ -7,9 +7,9 @@ de:
       messages:
         record_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
         restrict_dependent_destroy:
-          has_one: Datensatz kann nicht gelöscht werden, da ein abhängiger %{record}-Datensatz
-            existiert.
-          has_many: Datensatz kann nicht gelöscht werden, da abhängige %{record} existieren.
+          has_one: 'Datensatz kann nicht gelöscht werden, da ein abhängiger %{record}-Datensatz
+            existiert.'
+          has_many: 'Datensatz kann nicht gelöscht werden, da abhängige %{record} existieren.'
   date:
     abbr_day_names:
     - So
@@ -46,7 +46,6 @@ de:
       long: "%e. %B %Y"
       short: "%e. %b"
     month_names:
-    -
     - Januar
     - Februar
     - März
@@ -60,45 +59,45 @@ de:
     - November
     - Dezember
     order:
-    - :day
-    - :month
-    - :year
+    - ':day'
+    - ':month'
+    - ':year'
   datetime:
     distance_in_words:
       about_x_hours:
         one: etwa eine Stunde
-        other: etwa %{count} Stunden
+        other: 'etwa %{count} Stunden'
       about_x_months:
         one: etwa ein Monat
-        other: etwa %{count} Monate
+        other: 'etwa %{count} Monate'
       about_x_years:
         one: etwa ein Jahr
-        other: etwa %{count} Jahre
+        other: 'etwa %{count} Jahre'
       almost_x_years:
         one: fast ein Jahr
-        other: fast %{count} Jahre
+        other: 'fast %{count} Jahre'
       half_a_minute: eine halbe Minute
       less_than_x_minutes:
         one: weniger als eine Minute
-        other: weniger als %{count} Minuten
+        other: 'weniger als %{count} Minuten'
       less_than_x_seconds:
         one: weniger als eine Sekunde
-        other: weniger als %{count} Sekunden
+        other: 'weniger als %{count} Sekunden'
       over_x_years:
         one: mehr als ein Jahr
-        other: mehr als %{count} Jahre
+        other: 'mehr als %{count} Jahre'
       x_days:
         one: ein Tag
-        other: "%{count} Tage"
+        other: '%{count} Tage'
       x_minutes:
         one: eine Minute
-        other: "%{count} Minuten"
+        other: '%{count} Minuten'
       x_months:
         one: ein Monat
-        other: "%{count} Monate"
+        other: '%{count} Monate'
       x_seconds:
         one: eine Sekunde
-        other: "%{count} Sekunden"
+        other: '%{count} Sekunden'
     prompts:
       day: Tag
       hour: Stunden
@@ -107,22 +106,22 @@ de:
       second: Sekunde
       year: Jahr
   errors:
-    format: "%{attribute} %{message}"
+    format: '%{attribute} %{message}'
     messages:
       accepted: muss akzeptiert werden
       blank: muss ausgefüllt werden
       present: darf nicht ausgefüllt werden
-      confirmation: stimmt nicht mit %{attribute} überein
+      confirmation: 'stimmt nicht mit %{attribute} überein'
       empty: muss ausgefüllt werden
-      equal_to: muss genau %{count} sein
+      equal_to: 'muss genau %{count} sein'
       even: muss gerade sein
       exclusion: ist nicht verfügbar
-      greater_than: muss größer als %{count} sein
-      greater_than_or_equal_to: muss größer oder gleich %{count} sein
+      greater_than: 'muss größer als %{count} sein'
+      greater_than_or_equal_to: 'muss größer oder gleich %{count} sein'
       inclusion: ist kein gültiger Wert
       invalid: ist nicht gültig
-      less_than: muss kleiner als %{count} sein
-      less_than_or_equal_to: muss kleiner oder gleich %{count} sein
+      less_than: 'muss kleiner als %{count} sein'
+      less_than_or_equal_to: 'muss kleiner oder gleich %{count} sein'
       model_invalid: 'Gültigkeitsprüfung ist fehlgeschlagen: %{errors}'
       not_a_number: ist keine Zahl
       not_an_integer: muss ganzzahlig sein
@@ -131,14 +130,14 @@ de:
       taken: ist bereits vergeben
       too_long:
         one: ist zu lang (mehr als 1 Zeichen)
-        other: ist zu lang (mehr als %{count} Zeichen)
+        other: 'ist zu lang (mehr als %{count} Zeichen)'
       too_short:
         one: ist zu kurz (weniger als 1 Zeichen)
-        other: ist zu kurz (weniger als %{count} Zeichen)
+        other: 'ist zu kurz (weniger als %{count} Zeichen)'
       wrong_length:
         one: hat die falsche Länge (muss genau 1 Zeichen haben)
-        other: hat die falsche Länge (muss genau %{count} Zeichen haben)
-      other_than: darf nicht gleich %{count} sein
+        other: 'hat die falsche Länge (muss genau %{count} Zeichen haben)'
+      other_than: 'darf nicht gleich %{count} sein'
     template:
       body: 'Bitte überprüfen Sie die folgenden Felder:'
       header:
@@ -148,9 +147,9 @@ de:
     select:
       prompt: Bitte wählen
     submit:
-      create: "%{model} erstellen"
-      submit: "%{model} speichern"
-      update: "%{model} aktualisieren"
+      create: '%{model} erstellen'
+      submit: '%{model} speichern'
+      update: '%{model} aktualisieren'
   number:
     currency:
       format:
