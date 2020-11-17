@@ -123,7 +123,7 @@ GEM
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
     nio4r (2.5.2)
-    nokogiri (1.10.5)
+    nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     parallel (1.19.1)
@@ -237,7 +237,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jwt (~> 2.1.0)
   listen (~> 3.0.5)
-  nokogiri (~> 1.10.4)
+  nokogiri (~> 1.10.8)
   pg (~> 1.1.4)
   pry-rails
   puma (~> 3.12)
