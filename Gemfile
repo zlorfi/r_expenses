@@ -20,7 +20,7 @@ gem 'jwt', '~> 2.1.0'
 gem 'mini_racer', platforms: :ruby
 gem 'nokogiri', '~> 1.10.4'
 gem 'pg', '~> 1.1.4'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12.2'
 gem 'rails', '~> 5.2.4'
 gem 'react_on_rails', '=11.3.0' # this has to match package.json
 gem 'sass-rails', '~> 5.0'

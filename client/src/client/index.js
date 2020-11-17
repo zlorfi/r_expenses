@@ -1,4 +1,6 @@
+import ReactOnRails from 'react-on-rails';
 import axios from 'axios'
+
 const SERVER_DOMAIN = process.env.SERVER_DOMAIN
 
 const getHeaders = () => ({
@@ -8,7 +10,7 @@ const getHeaders = () => ({
   }
 })
 
-const csrfToken = document.querySelector('[name=csrf-token]').content
+const csrfToken = ReactOnRails.authenticityToken();
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
 
 // HTTP GET Request - Returns Resolved or Rejected Promise

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'react-bootstrap';
 import { clientGet } from 'client';
 
+import AuthService from 'components/AuthService'
+
 class Overview extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +12,8 @@ class Overview extends Component {
       data: [],
       errorMessage: ''
     };
+
+    this.Auth = new AuthService();
   }
 
   async componentDidMount() {
@@ -21,6 +25,8 @@ class Overview extends Component {
       .catch(errorMessage => {
         this.setState({errorMessage: errorMessage})
       })
+
+    this.Auth.login('zlorfi@gmail.com', '12zzDlF!')
   }
 
   render() {
